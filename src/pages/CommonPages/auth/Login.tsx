@@ -26,7 +26,7 @@ interface User  {
   return (
     <>
     <SafeAreaView style={{flex:1,backgroundColor:colors.primary,}} >
-      <StatusBar barStyle={'dark-content'} backgroundColor={colors.primary}  />
+      <StatusBar barStyle={'light-content'} backgroundColor={colors.primary} hidden  />
     <TouchableOpacity onPress={()=>Keyboard.dismiss()} activeOpacity={1}>
         <LoginHeader height={height} width={width} text1={text1} text2={text2}/>
         <KeyboardAvoidingView>
