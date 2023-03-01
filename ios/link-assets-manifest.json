@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Zoho Puvi Regular.ttf",
+      "sha1": "f835e1464461f4ae881569afc00a8d682a2994c9"
+    },
+    {
+      "path": "src/assets/fonts/Zoho Puvi Semibold.ttf",
+      "sha1": "39fa1df1ec4e9e3689578645998a330dad5d3a39"
+    }
+  ]
+}
