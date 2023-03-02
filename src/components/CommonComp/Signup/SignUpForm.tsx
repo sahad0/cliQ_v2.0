@@ -114,7 +114,7 @@ type Error = false|true;
                   </Text></>}
         </View>
         
-        <TouchableOpacity disabled={eventReducer?.loading ? true:false} onPress={handleSubmit} style={{borderRadius:height*0.008,paddingHorizontal:height*0.1,backgroundColor:'#F13B32',width:width*0.9,alignSelf:'center',paddingVertical:height*0.02,marginTop:height*0.08}}>
+        <TouchableOpacity disabled={eventReducer?.loading ? true:false} onPress={handleSubmit} style={{borderRadius:height*0.008,paddingHorizontal:height*0.1,backgroundColor:'#FF453A',width:width*0.9,alignSelf:'center',paddingVertical:height*0.02,marginTop:height*0.08}}>
         {
                       eventReducer?.loading ? 
                       <>

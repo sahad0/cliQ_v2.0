@@ -5,6 +5,8 @@ import AuthNav from './Common/AuthNav';
 import { Platform, SafeAreaView } from 'react-native';
 import { useEffect } from 'react';
 import { colorController } from '../store/colorStore';
+import NewUserStackNav from './Common/NewUserStackNav';
+import ExistingUserNav from './Common/ExistingUserNav';
 
 
 
@@ -15,7 +17,10 @@ export default function Router():JSX.Element {
 
   const {token,orgNewUser} = useAppSelector((state)=>state.cart.auth.value);
   const auth = token;
+  const newUser = orgNewUser;
   axios.defaults.headers.common['Authorization'] = `Bearer ${auth}`;
+
+  console.log(orgNewUser);
 
   useEffect(()=>{
       if(Platform.OS === 'ios'){
@@ -33,10 +38,10 @@ export default function Router():JSX.Element {
 
   return (
     <NavigationContainer >
-      {/* {
-        !auth && ( */}
+       {
+        !auth && ( 
           <AuthNav />
-         {/* )
+         )
       }
       {
         auth && newUser && (
@@ -47,7 +52,7 @@ export default function Router():JSX.Element {
         auth && !newUser &&(
           <ExistingUserNav />
         )
-      }   */}
+      } 
       
 
          

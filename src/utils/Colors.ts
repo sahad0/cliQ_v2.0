@@ -17,7 +17,7 @@ export const IosColors:Colors = {
     colors:{
         primary:'#000000',
         secondary:'#ffffff',
-        primaryText:'#0279df',
+        primaryText:'#0A84FF',
         secondaryText:'#106d98'
     }
     

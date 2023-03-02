@@ -32,7 +32,7 @@
 		00E356EE1AD99517003FC87E /* cliQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cliQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* cliQTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cliQTests.m; sourceTree = "<group>"; };
-		0A1D14DCEDDC41DCA5406914 /* Zoho Puvi Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Zoho Puvi Semibold.ttf"; path = "../src/assets/fonts/Zoho Puvi Semibold.ttf"; sourceTree = "<group>"; };
+		0A1D14DCEDDC41DCA5406914 /* Zoho Puvi Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Zoho Puvi Semibold.ttf"; path = "../src/assets/fonts/Zoho Puvi Semibold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* cliQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cliQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = cliQ/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = cliQ/AppDelegate.mm; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = cliQ/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-cliQ-cliQTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cliQ-cliQTests.release.xcconfig"; path = "Target Support Files/Pods-cliQ-cliQTests/Pods-cliQ-cliQTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EFCA447BADA84D12A319692F /* Zoho Puvi Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Zoho Puvi Regular.ttf"; path = "../src/assets/fonts/Zoho Puvi Regular.ttf"; sourceTree = "<group>"; };
+		EFCA447BADA84D12A319692F /* Zoho Puvi Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Zoho Puvi Regular.ttf"; path = "../src/assets/fonts/Zoho Puvi Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
