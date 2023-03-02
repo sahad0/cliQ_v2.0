@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react'
-import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native'
+import React, { FC, memo, PureComponent } from 'react'
+import { Dimensions, FlatList, ListRenderItem, Platform, Pressable, Text, TouchableOpacity, View } from 'react-native'
 import Icons from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Iconi from 'react-native-vector-icons/SimpleLineIcons';
 import { Fonts } from '../../../../utils/Fonts';
+import { useAppSelector } from '../../../../Hooks/hooks';
 
 interface OrganisationType {
     id: string,
@@ -18,62 +19,98 @@ type Props = {
     orgState:OrganisationType[],
 }
 
+type RenderProp = {
+  item:OrganisationType,
+}
+
 type LayoutType = { length: number; offset: number; index: number; }
 
+  const RenderComp:FC<RenderProp> = memo(({item})=>{
 
+    const {height,width} = Dimensions.get('screen');
+    const {colors} = useAppSelector((state)=>state.cart.color.value);
+    
+    return(
+      <>
+          <Pressable android_ripple={{color:'lightgray',borderless:false,radius:height}}  style={{marginBottom:height*0.012,height:height*0.08,width:width*0.9,borderColor:'white',elevation:0.3,justifyContent:'center',alignSelf:'center',borderRadius:10,}}>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                    <Icon name='appstore1' size={height*0.03} style={{margin:height*0.013,marginLeft:width*0.05}} color={colors.secondary}/>
+                    <Text style={{fontFamily:Fonts.regular,fontSize:height*0.02,color:colors.secondary}}>{item.name}</Text>
+                </View>
+               
+              
+            </View>
+        </Pressable>
+      </>
+    )
+  })
+
+  const RenderComp1:FC<RenderProp> = memo(({item})=>{
+
+    const {height,width} = Dimensions.get('screen');
+    const {colors} = useAppSelector((state)=>state.cart.color.value);
+    
+    return(
+      <>
+          <TouchableOpacity  style={{marginBottom:height*0.012,height:height*0.08,width:width*0.9,borderColor:'white',elevation:0.3,justifyContent:'center',alignSelf:'center',borderRadius:10,}}>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                    <Icon name='appstore1' size={height*0.03} style={{margin:height*0.013,marginLeft:width*0.05}} color={colors.secondary}/>
+                    <Text style={{fontFamily:Fonts.regular,fontSize:height*0.02,color:colors.secondary}}>{item.name}</Text>
+                </View>
+               
+              
+            </View>
+        </TouchableOpacity>
+      </>
+    )
+  })
 
   
-  export default class OrgFlatlist extends PureComponent<Props> {
+  const OrgFlatlist:FC<Props>= ({height,width,orgState})=> {
 
-    keyExtractor = (item:OrganisationType):string => item.id;
-    renderItem:ListRenderItem<OrganisationType> = ({ item }) => (
-      <TouchableOpacity disabled={item.isDefault?true:false} style={{marginBottom:this.props.height*0.012,height:this.props.height*0.08,width:this.props.width*0.9,borderColor:'white',elevation:3,justifyContent:'center',alignSelf:'center',borderRadius:10,backgroundColor:item.isDefault ? '#2677C3':'white'}}>
-      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-          <View style={{flexDirection:'row',alignItems:'center'}}>
-              <Icons name='hash' size={15} style={{margin:this.props.height*0.013,marginLeft:this.props.width*0.05}} color={item.isDefault?'white':'#2677C3'}/>
-              <Text style={{fontFamily:Fonts.regular,fontSize:this.props.height*0.02,color:item.isDefault ? 'white' :'#2677C3'}}>{item.name}</Text>
-          </View>
-          {
-            item.isDefault && (
-              <TouchableOpacity style={{marginRight:this.props.width*0.05,backgroundColor:'white',elevation:5,borderRadius:this.props.height*0.05}}>
-                <Icon name='export' size={20} color={'black'} style={{margin:this.props.height*0.01,}} />
-              </TouchableOpacity>
-            )
-          }
-         
-      </View>
-  </TouchableOpacity>
-    );
+    const keyExtractor = (item:OrganisationType):string => item.id;
+    const renderItem:ListRenderItem<OrganisationType> = ({item})=> {
+      if(Platform.OS==='ios'){
+        return <RenderComp1 item={item} />
+      }
+      return <RenderComp item={item} />
+    }
     
    
 
-    HeaderComp = ()=>(
-      <View style={{margin:this.props.height*0.04,flexDirection:'row',alignItems:'center'}}>
-          <View style={{backgroundColor:'#2677C3',borderRadius:this.props.height*0.02,borderColor:'black',elevation:3}}>
-          <Iconi name='organization' size={25} style={{margin:this.props.height*0.013,}} color={'#FFFFFF'}/>
+    const HeaderComp = ()=>{
+      const {colors} = useAppSelector((state)=>state.cart.color.value);
+      
+      return(
+      
+      <View style={{margin:height*0.04,flexDirection:'row',alignItems:'center'}}>
+          <View style={{backgroundColor:'green',borderRadius:height*0.02,borderColor:'black',elevation:3}}>
+          <Iconi name='organization' size={25} style={{margin:height*0.013,}} color={'#FFFFFF'}/>
           </View>
-          <Text style={{fontFamily:Fonts.regular,fontSize:this.props.height*0.025,color:'black',marginLeft:this.props.width*0.03}}>Organizations</Text>
+          <Text style={{fontFamily:Fonts.regular,fontSize:height*0.025,color:'green',marginLeft:width*0.03}}>Organizations</Text>
       </View>
-    )
+    )}
 
-    Layout = (data:OrganisationType[]| null | undefined, index:number) => (
-      {length: this.props.height*0.08, offset: (this.props.height*0.08 * index)+this.props.height*0.012, index}
+    const Layout = (data:OrganisationType[]| null | undefined, index:number) => (
+      {length: height*0.08, offset: (height*0.08 * index)+height*0.012, index}
     )
 
 
   
-    render() {
       return (
         <FlatList
-          getItemLayout={this.Layout}
-          ListHeaderComponent={this.HeaderComp}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
-          data={this.props.orgState}
+          getItemLayout={Layout}
+          ListHeaderComponent={HeaderComp}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          data={orgState}
         />
       );
-    }
   }
+
+  export default OrgFlatlist;
 
 
  
