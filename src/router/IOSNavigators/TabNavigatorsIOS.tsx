@@ -7,13 +7,11 @@ import ChannelDetails from '../../pages/CommonPages/CreateChannelStack/ChannelDe
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import FontAws from 'react-native-vector-icons/FontAwesome5';
 import Antd from 'react-native-vector-icons/AntDesign';
-
 import { useAppSelector } from '../../Hooks/hooks';
 import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS';
-import ChatStackNavIOS from './ChatStackNavIOS';
 
 export type TabStackParams ={
-  ChatStackNavIOS:undefined,
+  ChatListIOS:undefined,
   ChannelList:undefined,
   CallList:undefined,
   CalanderList:undefined,
@@ -30,9 +28,9 @@ export default function TabNavigatorsIOS():JSX.Element {
 
     
   return (
-    <Tab.Navigator  initialRouteName='ChatStackNavIOS' screenOptions={{headerShown:false,tabBarStyle:{borderTopColor:colors.zBlack,backgroundColor:colors.zBlack,height:height*0.11}, }}>
+    <Tab.Navigator  initialRouteName='ChatListIOS' screenOptions={{headerShown:false,tabBarStyle:{borderTopColor:colors.zBlack,backgroundColor:colors.zBlack,height:height*0.11}, }}>
          
-         <Tab.Screen name="ChatStackNavIOS" component={ChatStackNavIOS} options={{
+         <Tab.Screen name="ChatListIOS" component={ChatListIOS} options={{
             tabBarLabel:()=>null,
             
             tabBarIcon: ({focused}) => {

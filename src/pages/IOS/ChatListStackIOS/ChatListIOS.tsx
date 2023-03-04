@@ -3,6 +3,7 @@ import React from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import ChatListIOSHeader from '../../../components/IOS/ChatListIOS/ChatListIOSHeader';
 import ChatListIOSPins from '../../../components/IOS/ChatListIOS/ChatListIOSPins';
+import ChatIOS from '../../../components/IOS/ChatListIOS/ChatIOS';
 
 const ChatListIOS = () => {
   const {colors} = useAppSelector((state)=>state.cart.color.value);
@@ -13,6 +14,8 @@ const ChatListIOS = () => {
 
       <ChatListIOSHeader height={height} width={width} />
       <ChatListIOSPins height={height} width={width} />
+      <ChatIOS height={height} width={width} />
+
 
       
 

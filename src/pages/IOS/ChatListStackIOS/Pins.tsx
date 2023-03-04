@@ -3,7 +3,7 @@ import React from 'react'
 
 const Pins = ():JSX.Element => {
   return (
-    <View>
+    <View style={{backgroundColor:'white',flex:1}}>
       <Text>Pins</Text>
     </View>
   )
