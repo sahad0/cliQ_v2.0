@@ -78,7 +78,6 @@ type focusBool = true|false;
             const sentOtp = await axios.post('/auth/email-otp',{email:email});
         }
         catch(err){
-            console.log(err);
         }
     }
 

@@ -48,7 +48,7 @@ export const otpSchema = yup.object().shape({
 export const resetPasswordSchema =  yup.object().shape({
   password: yup.string().required('Password is required'),
   passwordConfirmation: yup.string()
-     .oneOf([yup.ref('password'), null], 'Passwords must match').min(6,({min})=> `Password must be at least ${min} characters`)
+     .oneOf([yup.ref('password')], 'Passwords must match').min(6,({min})=> `Password must be at least ${min} characters`)
 });
 
 export const organisationSchema =  yup.object().shape({

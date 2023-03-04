@@ -25,9 +25,6 @@ const OrganisationBody:FC<AppProps> = ({height,width}) => {
     useEffect(()=>{
         fetchOrg();
     },[]);
-    useEffect(()=>{
-        console.log(JSON.stringify(orgState));
-    },[orgState]);
 
     const fetchOrg = async ():Promise<void> => {
         try {
@@ -56,6 +53,30 @@ const OrganisationBody:FC<AppProps> = ({height,width}) => {
                     },
                     {
                         id: '2wrewrw31',
+                        name: 'Truckate',
+                        isDefault:true,
+                        owner:{}
+                    },
+                    {
+                        id: '23dsada1',
+                        name: 'Sahad',
+                        isDefault:true,
+                        owner:{}
+                    },
+                    {
+                        id: 'erkwadsar',
+                        name: 'Fif_Org',
+                        isDefault:true,
+                        owner:{}
+                    },
+                    {
+                        id: '23rwersdsw1',
+                        name: 'Xpress',
+                        isDefault:true,
+                        owner:{}
+                    },
+                    {
+                        id: '2wresdsdwrw31',
                         name: 'Truckate',
                         isDefault:true,
                         owner:{}

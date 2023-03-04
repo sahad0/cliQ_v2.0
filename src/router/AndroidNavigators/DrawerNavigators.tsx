@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import DrawerContent from '../../Extra/DrawerContent';
 import CreateChannelStackNav from './CreateChannelStackNav';
 import axios, { AxiosResponse } from 'axios';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { logoutController, profileController } from '../../store/store';
+import DrawerContent from '../../Extra/DrawerContent';
 
 
 export type DrawerStackParams ={

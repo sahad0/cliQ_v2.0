@@ -1,5 +1,5 @@
 import {  TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView } from 'react-native';
 import { useAppSelector } from '../../../Hooks/hooks';
 import LoginHeader from '../../../components/CommonComp/Login/LoginHeader';
@@ -8,7 +8,6 @@ import LoginForm from '../../../components/CommonComp/Login/LoginForm';
 
 interface User  {
   email:string,
-  password:string,
 }
 
  const Login = ():JSX.Element=> {
@@ -20,7 +19,8 @@ interface User  {
     const text2 = 'to access Cliq'
 
 
-    const [user,setUser] = useState<User>({email:'',password:''});
+    const [user,setUser] = useState<User>({email:''});
+
 
 
   return (

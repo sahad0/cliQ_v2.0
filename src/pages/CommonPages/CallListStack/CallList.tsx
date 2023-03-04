@@ -3,7 +3,7 @@ import React from 'react'
 
 const CallList = () => {
   return (
-    <View>
+    <View style={{backgroundColor:'#0b0b0b',flex:1}}>
       <Text>CallList</Text>
     </View>
   )

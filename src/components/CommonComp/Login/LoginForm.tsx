@@ -16,7 +16,6 @@ import { useAppSelector } from '../../../Hooks/hooks';
 
 type UserType = {
   email:string,
-  password?:string,
 }
 type Props = {
   height:number,

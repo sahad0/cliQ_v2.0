@@ -101,6 +101,7 @@ type LayoutType = { length: number; offset: number; index: number; }
   
       return (
         <FlatList
+          showsVerticalScrollIndicator={false}
           getItemLayout={Layout}
           ListHeaderComponent={HeaderComp}
           keyExtractor={keyExtractor}

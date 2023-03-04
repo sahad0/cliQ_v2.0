@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TabNavigators from './TabNavigators';
+import TabNavigatorsAndroid from './TabNavigatorsAndroid';
 
 
 export  type ChannelStackParams = {
@@ -24,9 +24,8 @@ const CreateChannelStackNav = () => {
   return (
    <Stack.Navigator  screenOptions={{headerShown:false,}}  initialRouteName={'TabNavigators'} >
 
-        <Stack.Screen  options={{animation:'fade_from_bottom'}} name='TabNavigators' component={TabNavigators} />
+        <Stack.Screen  options={{animation:'fade_from_bottom'}} name='TabNavigators' component={TabNavigatorsAndroid} />
 
-       
 
 
     </Stack.Navigator>

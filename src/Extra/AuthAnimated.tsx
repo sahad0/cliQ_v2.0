@@ -16,15 +16,11 @@ type Props = {
     inputStr:string,
     btnStr:string,
     nvgStr:string,
-    user:object,
+    user:{email:string},
     setUser:any,
 }
 type FocusBool = true|false;
 
-type userDetail  ={
-  email?:string,
-  password?:string,
-}
 
 const AuthAnimated:FC<Props> = ({height,width,inputStr,btnStr,user,setUser}:Props):JSX.Element =>{
 
@@ -33,66 +29,49 @@ const AuthAnimated:FC<Props> = ({height,width,inputStr,btnStr,user,setUser}:Prop
     const [inValidCred,setInValidCred] = useState<FocusBool>(false);
     const initialValues: FormikValues = { password: '' };
     const [eventReducer,setEventReducer] = useReducer(requestStatus,initial_state);
-
     const {colors} = useAppSelector((state)=>state.cart.color.value);
-
-    
     const dispatch = useAppDispatch();
 
-    useEffect(()=>{
-      const {email,password}:userDetail = user;
 
-      if(email!==''&& password!==''){
-        callLogin();
-      }
-      
-    },[user])
 
-    const callLogin = async():Promise<void> =>{
-      try {
-        Keyboard.dismiss();
-        setEventReducer({type:'loading'});
-        const {data} = await axios('/auth/login',{method:'POST',data:user});
-        console.log(data);
-        setInValidCred(false);
-        
-        if(data){
-          
-            delete data.message;
-            const createHeader = axios.create({
-              headers: {
-                Authorization : `Bearer ${data.token}`
-                }
-              
-            })
-            const data1 = await createHeader.get('organization/user-organizations');
-          
-            if(data1){
-              const {organizations} = data1.data;
-              const orgNewUser = organizations.length>0 ? false:true
-              dispatch(loginController({token:data.token,orgNewUser:orgNewUser,profile:null}));
-              setEventReducer({type:'success'});
-            }
-        }
-        else{
-        setEventReducer({type:'error'});
 
-        }
-      } catch (err:any) {
-          setEventReducer({type:'error'});
-          setInValidCred(true);
-      }
-    }
 
-    const LoginFn = (values : FormikValues):void =>{
-      try {
+    const LoginFn = async(values : FormikValues):Promise<void> =>{
         const {password} = values;
-        setUser({...user,password});
-
-        
+        if(user.email&&password!==''){
+          try {
+            Keyboard.dismiss();
+            setEventReducer({type:'loading'});
+            const {data} = await axios('/auth/login',{method:'POST',data:{email:user.email,password:password}});
+            setInValidCred(false);
+            
+            if(data){
+                delete data.message;
+                const createHeader = axios.create({
+                  headers: {
+                    Authorization : `Bearer ${data.token}`
+                    }
+                })
+                const data1 = await createHeader.get('organization/user-organizations');
+                if(data1){
+                  const {organizations} = data1.data;
+                  const orgNewUser = organizations.length>0 ? false:true
+                  dispatch(loginController({token:data.token,orgNewUser:orgNewUser,profile:null}));
+                  setEventReducer({type:'success'});
+                }
+            }
+            else{
+            setEventReducer({type:'error'});
+    
+            }
+          } catch (err:any) {
+              setEventReducer({type:'error'});
+              setInValidCred(true);
+          }
+        }
+         
        
-      } catch (error) {
-      }
+     
     }
     
     

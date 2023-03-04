@@ -9,6 +9,7 @@ export const AndroidColors: Colors= {
         secondary:'#000000',
         primaryText:'#03a1f3',
         secondaryText:'#f0483e',
+        
     }
     
     
@@ -18,7 +19,10 @@ export const IosColors:Colors = {
         primary:'#000000',
         secondary:'#ffffff',
         primaryText:'#0A84FF',
-        secondaryText:'#106d98'
+        secondaryText:'#106d98',
+        zBlack:'#0b0b0b',
+        zBlue:'#1c6ba3',
+        zGray:'#6b6b6b',
     }
     
 

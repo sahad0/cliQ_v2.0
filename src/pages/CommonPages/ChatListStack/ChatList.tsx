@@ -8,7 +8,7 @@ export default function ChatList():JSX.Element {
 
 
   return (
-    <SafeAreaView style={{flex:1,backgroundColor:'white'}}>
+    <SafeAreaView style={{flex:1,backgroundColor:'#0b0b0b'}}>
 
         {/* <ChatListHeader height={height} width={width} />
         <ChatListBody height={height} width={width} /> */}
