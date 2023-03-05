@@ -1,9 +1,8 @@
 import { View, Text, SafeAreaView, Dimensions } from 'react-native'
 import React from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
-import ChatListIOSHeader from '../../../components/IOS/ChatListIOS/ChatListIOSHeader';
-import ChatListIOSPins from '../../../components/IOS/ChatListIOS/ChatListIOSPins';
 import ChatIOS from '../../../components/IOS/ChatListIOS/ChatIOS';
+import Material from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const ChatListIOS = () => {
   const {colors} = useAppSelector((state)=>state.cart.color.value);
@@ -12,9 +11,12 @@ const ChatListIOS = () => {
   return (
     <SafeAreaView style={{backgroundColor:colors.zBlack,flex:1}}>
 
-      <ChatListIOSHeader height={height} width={width} />
-      <ChatListIOSPins height={height} width={width} />
+      
       <ChatIOS height={height} width={width} />
+      <View  style={{backgroundColor:colors.zBlue,height:height*0.06,width:height*0.06,borderRadius:height,position:'absolute',alignItems:'center',justifyContent:'center',top:'96%',left:'80%'}}>
+      <Material name='square-edit-outline' size={height*0.028}  color={'white'} />
+
+      </View>
 
 
       

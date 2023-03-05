@@ -5,6 +5,7 @@ import { useAppSelector } from '../../../Hooks/hooks';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
+
 type AppProps = {
     height:number,
     width:number,
@@ -55,7 +56,7 @@ const ChatListIOSPins:FC<AppProps> = ({height,width}):JSX.Element => {
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
 
   const openPins = ()=>{
-    navigation.navigate('Pins');
+    navigation.navigate('Pins',{data:data});
   }
 
   return (
@@ -71,14 +72,12 @@ const ChatListIOSPins:FC<AppProps> = ({height,width}):JSX.Element => {
         
         {
           data.map((k)=>(
-            <>
               <View key={k.id} style={{height:height*0.09,width:height*0.09,margin:height*0.01}}>
                 <View style={{backgroundColor:colors.zBlue,height:height*0.09,width:height*0.09,borderRadius:height,}}>
                   <Image source={k.imgUrl} style={{borderRadius:height,height:'100%',width:'100%'}} resizeMode='cover' />
                 </View>
                 <Text numberOfLines={1} ellipsizeMode={'tail'} style={{fontSize:height*0.018,marginTop:height*0.01,color:colors.zGray,alignSelf:'center'}}>{k.name}</Text>
             </View>
-            </>
           ))
         }
       
