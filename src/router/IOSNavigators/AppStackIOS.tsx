@@ -1,19 +1,27 @@
-import React from 'react'
-import Organization from '../../pages/CommonPages/OrganisationControl/Organization';
-import TabNavigators from './TabNavigatorsIOS';
+import React, { useEffect } from 'react'
 import { CardStyleInterpolators, createStackNavigator, TransitionSpecs } from '@react-navigation/stack';
-import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS';
-import Pins from '../../pages/IOS/ChatListStackIOS/Pins';
-import TabNavigatorsIOS from './TabNavigatorsIOS';import { ImageSourcePropType, LogBox } from "react-native";
+import TabNavigatorsIOS from './TabNavigatorsIOS';
+import { ImageSourcePropType, LogBox } from "react-native";
+import PinsIOS from '../../pages/IOS/ChatListStackIOS/PinsIOS';
+import StartChatIOS from '../../pages/IOS/ChatListStackIOS/StartChatIOS';
+import ChatViewIOS from '../../pages/IOS/ChatListStackIOS/ChatViewIOS';
+
 
 LogBox.ignoreLogs(["Sending `onAnimatedValueUpdate` with no listeners registered.",]);
 
 
 export type AppStackIOSParams = {
     TabNavigatorsIOS:undefined,
-    Pins:{
+    PinsIOS:{
       data : {id:string,imgUrl:ImageSourcePropType,name:string}[]
     },
+    ChatViewIOS:{
+      data:{
+        id:string,
+        name:string,
+      }
+    },
+    StartChat:undefined,
 }
 
 export default function AppStackIOS() {
@@ -21,12 +29,15 @@ export default function AppStackIOS() {
   const Stack = createStackNavigator<AppStackIOSParams>(); 
 
 
+
   return (
 
       <Stack.Navigator  screenOptions={{headerShown:false,animationEnabled:true,}} initialRouteName='TabNavigatorsIOS'>
         
         <Stack.Screen   name='TabNavigatorsIOS' component={TabNavigatorsIOS} />
-        <Stack.Screen   name='Pins' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={Pins} />
+        <Stack.Screen   name='PinsIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={PinsIOS} />
+        <Stack.Screen   name='StartChat' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={StartChatIOS} />
+        <Stack.Screen   name='ChatViewIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'horizontal',cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,detachPreviousScreen:false}} component={ChatViewIOS} />
       
       </Stack.Navigator>
     )

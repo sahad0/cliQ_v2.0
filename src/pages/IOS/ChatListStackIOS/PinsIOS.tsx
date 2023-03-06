@@ -20,7 +20,7 @@ type Render = {
 const ListHeader = ():JSX.Element =>{
   const {colors} = useAppSelector((state)=>state.cart.color.value);
   const {height,width} = Dimensions.get('screen');
-  const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'Pins'>>();
+  const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'PinsIOS'>>();
   return(
     <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.04,}}>
       <Text style={{color:colors.secondary,fontSize:height*0.024,fontWeight:'600'}}>Pins</Text>
@@ -59,11 +59,11 @@ const RenderItem:FC<Render> = memo(({item})=>{
 
 
 
-const Pins = ():JSX.Element => {
+const PinsIOS = ():JSX.Element => {
   const {colors} = useAppSelector((state)=>state.cart.color.value);
   const {height,width} = Dimensions.get('screen');
 
-  const {params:{data}} = useRoute<RouteProp<AppStackIOSParams,'Pins'>>();
+  const {params:{data}} = useRoute<RouteProp<AppStackIOSParams,'PinsIOS'>>();
   const keyExtractor = (item:RenderProp):string => item.id;
 
   const renderItem:ListRenderItem<RenderProp> = ({item}) =>(<RenderItem item={item} />);
@@ -86,4 +86,4 @@ const Pins = ():JSX.Element => {
   )
 }
 
-export default Pins
+export default PinsIOS

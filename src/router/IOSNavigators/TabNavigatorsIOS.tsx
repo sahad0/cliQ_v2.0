@@ -1,5 +1,5 @@
 import { View, Text, Dimensions, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CallList from '../../pages/CommonPages/CallListStack/CallList';
 import ChatList from '../../pages/CommonPages/ChatListStack/ChatList';
@@ -7,8 +7,10 @@ import ChannelDetails from '../../pages/CommonPages/CreateChannelStack/ChannelDe
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import FontAws from 'react-native-vector-icons/FontAwesome5';
 import Antd from 'react-native-vector-icons/AntDesign';
-import { useAppSelector } from '../../Hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS';
+import axios from 'axios';
+import { profileController } from '../../store/store';
 
 export type TabStackParams ={
   ChatListIOS:undefined,
@@ -24,7 +26,10 @@ const Tab = createBottomTabNavigator<TabStackParams>();
 export default function TabNavigatorsIOS():JSX.Element {
 
   const {height,width} = Dimensions.get('screen');
+
+
   const {colors} = useAppSelector((state)=>state.cart.color.value);
+ 
 
     
   return (

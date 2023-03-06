@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { memo, useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Organization from '../../pages/CommonPages/OrganisationControl/Organization';
 import TabNavigators from './TabNavigatorsIOS';
 import AppStackIOS from './AppStackIOS';
+import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
+import {profileController,logoutController} from '../../store/store';
+import axios from 'axios';
 
 
 type ExistingUserStackParams = {
@@ -10,10 +13,31 @@ type ExistingUserStackParams = {
     AppStackIOS:undefined,
 }
 
-export default function ExistingUserNavIOS() {
+const ExistingUserNavIOS = ()=> {
 
-  const Stack = createNativeStackNavigator<ExistingUserStackParams>(); 
+  const Stack = createNativeStackNavigator<ExistingUserStackParams>();
 
+
+  const {profile} = useAppSelector((state)=>state.cart.auth.value);
+  const dispatch = useAppDispatch();
+  
+  useEffect(()=>{
+    fetchProfile();
+  },[]);
+
+  const fetchProfile = async():Promise<void>=>{
+    try {
+      if(profile?._id===''){
+        const {profile} = ((await axios('/auth/profile',{timeout:5000,method:'GET'})).data);
+        dispatch(profileController({profile}));
+      }
+      
+    } catch (error) {
+      dispatch(logoutController());
+      
+    }
+  }
+  
 
   return (
 
@@ -26,3 +50,6 @@ export default function ExistingUserNavIOS() {
     )
   
 }
+
+
+export default ExistingUserNavIOS;

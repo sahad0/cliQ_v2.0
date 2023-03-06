@@ -56,7 +56,7 @@ const ChatListIOSPins:FC<AppProps> = ({height,width}):JSX.Element => {
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
 
   const openPins = ()=>{
-    navigation.navigate('Pins',{data:data});
+    navigation.navigate('PinsIOS',{data:data});
   }
 
   return (

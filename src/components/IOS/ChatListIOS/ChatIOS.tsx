@@ -1,8 +1,11 @@
-import { View, Text, Image, ListRenderItem, ImageSourcePropType, FlatList, Dimensions } from 'react-native'
+import { View, Text, Image, ListRenderItem, ImageSourcePropType, FlatList, Dimensions, Pressable } from 'react-native'
 import React, { FC, memo } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import ChatListIOSHeader from './ChatListIOSHeader';
 import ChatListIOSPins from './ChatListIOSPins';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 
 type AppProps = {
     height:number,
@@ -86,12 +89,13 @@ const data = [
 
     const RenderItem:FC<Render> = memo(({item})=>{
 
-    const {colors} = useAppSelector((state)=>state.cart.color.value);
+        const {colors} = useAppSelector((state)=>state.cart.color.value);
 
         const {height,width} = Dimensions.get('screen');
+        const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
         return(
         <>
-            <View style={{width:width,flexDirection:'row',margin:height*0.003,alignItems:'center',justifyContent:'center',height:height*0.085}}>
+            <Pressable onPress={()=>navigation.navigate('ChatViewIOS',{data:{id:item.id,name:item.name}})} style={{width:width,flexDirection:'row',margin:height*0.003,alignItems:'center',justifyContent:'center',height:height*0.085}}>
                 <View style={{width:'15%',}}>
                     {
                         item.imgUrl ? 
@@ -113,7 +117,7 @@ const data = [
                     </View>
                     <Text style={{color:colors.zGray,marginTop:height*0.005,fontSize:height*0.018,width:'83%',}} numberOfLines={1} ellipsizeMode={'tail'}>{item.recentMsg}</Text>       
                 </View>
-            </View>
+            </Pressable>
         </>
     )})
 
