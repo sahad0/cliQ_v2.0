@@ -104,7 +104,7 @@ const RenderItem:FC<Render> = memo(({item}):JSX.Element=>{
         alignerStyle:{
             marginLeft:itemLength?height*0.025:0,
             margin:itemLength?0:height*0.01,
-            marginTop:itemLength?0:height*0.01,
+            marginTop:itemLength?0:height*0.003,
             marginBottom:itemLength?0:0,
             marginRight:0,
 
