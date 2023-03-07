@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Dimensions } from 'react-native'
+import { View, Text, SafeAreaView, Dimensions, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import ChatViewIOSHeader from '../../../components/IOS/ChatViewIOS/ChatViewIOSHeader'
 import { RouteProp, useRoute } from '@react-navigation/native';
@@ -15,8 +15,8 @@ const ChatViewIOS = ():JSX.Element => {
 
   return (
     <SafeAreaView style={{backgroundColor:colors.primary,flex:1}}>
-        <ChatViewIOSHeader height={height} width={width} name={name} />
-        <ChatViewIOSBody height={height} width={width} />
+          <ChatViewIOSHeader height={height} width={width} name={name} />
+          <ChatViewIOSBody height={height} width={width} />
     </SafeAreaView>
   )
 }
