@@ -2,10 +2,11 @@ import { View, Text, SafeAreaView, Dimensions } from 'react-native'
 import React from 'react'
 import QuickChatHeader from '../../components/QuickChat/QuickChatHeader'
 import QuickChatBody from '../../components/QuickChat/QuickChatBody';
+import { height, width } from '../../../utils/Dimension';
 
 export default function QuickChat():JSX.Element {
 
-const {height,width} = Dimensions.get('screen');
+
 
   return (
     <SafeAreaView style={{flex:1,backgroundColor:'white'}}>

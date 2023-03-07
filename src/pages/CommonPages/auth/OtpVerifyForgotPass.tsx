@@ -3,12 +3,12 @@ import React from 'react'
 import LoginHeader from '../../../components/CommonComp/Login/LoginHeader';
 import OtpVerifyFormForgotPass from '../../../components/CommonComp/OtpVerifyForgotPass/OtpVerifyFormForgotPass';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 
 
 export default function OtpVerifyForgotPass():JSX.Element {
 
-    const{width,height} = Dimensions.get('screen');
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
     const text1 = 'Verify via email';

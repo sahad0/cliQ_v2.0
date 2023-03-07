@@ -3,10 +3,10 @@ import React from 'react'
 import CreateOrgHeader from '../../../components/CommonComp/CreateOrganization/CreateOrgHeader';
 import NameOrgBody from '../../../components/CommonComp/NameOrganization/NameOrgBody';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 export default function NameOrganisation():JSX.Element {
 
-    const{height,width} = Dimensions.get('screen');
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
 

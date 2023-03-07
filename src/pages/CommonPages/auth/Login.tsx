@@ -4,6 +4,7 @@ import { KeyboardAvoidingView } from 'react-native';
 import { useAppSelector } from '../../../Hooks/hooks';
 import LoginHeader from '../../../components/CommonComp/Login/LoginHeader';
 import LoginForm from '../../../components/CommonComp/Login/LoginForm';
+import { height, width } from '../../../utils/Dimension';
 
 
 interface User  {
@@ -12,7 +13,7 @@ interface User  {
 
  const Login = ():JSX.Element=> {
 
-    const {height,width} = Dimensions.get('screen');
+    
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
     const text1 = 'Sign in';

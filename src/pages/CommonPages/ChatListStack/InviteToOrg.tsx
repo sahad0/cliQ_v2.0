@@ -2,10 +2,11 @@ import { View, Text, SafeAreaView, Dimensions, TouchableOpacity, Keyboard } from
 import React from 'react'
 import InviteHeader from '../../components/InviteToOrg/InviteHeader'
 import InviteBody from '../../components/InviteToOrg/InviteBody';
+import { height, width } from '../../../utils/Dimension';
 
 export default function InviteToOrg() {
 
-const {height,width} = Dimensions.get('screen');
+
 
   return (
     <SafeAreaView style={{flex:1}}>

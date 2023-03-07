@@ -1,10 +1,11 @@
 import React, { FC, memo, PureComponent } from 'react'
-import { Dimensions, FlatList, ListRenderItem, Platform, Pressable, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, ListRenderItem, Platform, Pressable, Text, TouchableOpacity, View } from 'react-native'
 import Icons from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Iconi from 'react-native-vector-icons/SimpleLineIcons';
 import { Fonts } from '../../../../utils/Fonts';
 import { useAppSelector } from '../../../../Hooks/hooks';
+import { height, width } from '../../../../utils/Dimension';
 
 interface OrganisationType {
     id: string,
@@ -27,7 +28,7 @@ type LayoutType = { length: number; offset: number; index: number; }
 
   const RenderComp:FC<RenderProp> = memo(({item})=>{
 
-    const {height,width} = Dimensions.get('screen');
+    
     const {colors} = useAppSelector((state)=>state.cart.color.value);
     
     return(
@@ -48,7 +49,7 @@ type LayoutType = { length: number; offset: number; index: number; }
 
   const RenderComp1:FC<RenderProp> = memo(({item})=>{
 
-    const {height,width} = Dimensions.get('screen');
+    
     const {colors} = useAppSelector((state)=>state.cart.color.value);
     
     return(

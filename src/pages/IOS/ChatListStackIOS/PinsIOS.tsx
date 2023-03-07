@@ -6,6 +6,7 @@ import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 import Ion from 'react-native-vector-icons/Ionicons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons'
+import { height, width } from '../../../utils/Dimension';
 
 
 type RenderProp = {
@@ -19,7 +20,7 @@ type Render = {
 
 const ListHeader = ():JSX.Element =>{
   const {colors} = useAppSelector((state)=>state.cart.color.value);
-  const {height,width} = Dimensions.get('screen');
+  
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'PinsIOS'>>();
   return(
     <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.04,}}>
@@ -35,7 +36,7 @@ const ListHeader = ():JSX.Element =>{
 
 const RenderItem:FC<Render> = memo(({item})=>{
   const {colors} = useAppSelector((state)=>state.cart.color.value);
-  const {height,width} = Dimensions.get('screen');
+  
 
   return(
     <View style={{width:width/2,alignItems:'center',height:height*0.22}}>
@@ -61,7 +62,7 @@ const RenderItem:FC<Render> = memo(({item})=>{
 
 const PinsIOS = ():JSX.Element => {
   const {colors} = useAppSelector((state)=>state.cart.color.value);
-  const {height,width} = Dimensions.get('screen');
+  
 
   const {params:{data}} = useRoute<RouteProp<AppStackIOSParams,'PinsIOS'>>();
   const keyExtractor = (item:RenderProp):string => item.id;

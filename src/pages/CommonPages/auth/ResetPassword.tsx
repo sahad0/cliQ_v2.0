@@ -5,6 +5,7 @@ import { KeyboardAvoidingView } from 'react-native'
 import LoginHeader from '../../../components/CommonComp/Login/LoginHeader';
 import ResetPasswordForm from '../../../components/CommonComp/ResetPassword/ResetPasswordForm';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 
 
@@ -12,7 +13,6 @@ import { useAppSelector } from '../../../Hooks/hooks';
 
 
 export default function ResetPassword():JSX.Element {
-    const {width, height} = Dimensions.get('screen');
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
   return (

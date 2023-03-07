@@ -22,7 +22,7 @@ export type SelectedState = Selected[]|[];
 
 export default function AddParticipants():JSX.Element {
 
-const {height,width} = Dimensions.get('screen');
+
 const [selected,setSelected] = useState<SelectedState>([]);
 const [members,setMembers] = useState<ItemProps[]>([]);
 

@@ -4,10 +4,11 @@ import { Dimensions } from 'react-native'
 import CreateOrgHeader from '../../../components/CommonComp/CreateOrganization/CreateOrgHeader';
 import OrganisationBody from '../../../components/CommonComp/Organizations/OrganisationBody';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 export default function Organization():JSX.Element {
 
-    const {height,width} = Dimensions.get('screen');
+    
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
 

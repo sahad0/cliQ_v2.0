@@ -3,12 +3,12 @@ import React from 'react'
 import SignupHeader from '../../../components/CommonComp/Signup/SignupHeader';
 import OtpVerifyFormSignUp from '../../../components/CommonComp/OtpVerifySignUp/OtpVerifyFormSignUp';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 
 
 export default function OtpVerifySignUp():JSX.Element {
 
-    const {width,height} = Dimensions.get('screen');
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
 

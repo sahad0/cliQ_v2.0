@@ -1,17 +1,20 @@
-import { View, Text, KeyboardAvoidingView, FlatList, ListRenderItem, ImageSourcePropType, Image, TextInput, Platform, StyleSheet } from 'react-native'
+import { View, Text, KeyboardAvoidingView, FlatList, ListRenderItem, ImageSourcePropType, Image, TextInput, Platform, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { FC, memo } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
-import { Dimensions } from 'react-native';
 import moment from 'moment';
 import Ion from 'react-native-vector-icons/Ionicons'
+import Antd from 'react-native-vector-icons/AntDesign'
+import FontAws from 'react-native-vector-icons/FontAwesome'
 import { height,width } from '../../../utils/Dimension';
 import { IosColors } from '../../../utils/Colors';
+import { Pressable } from 'react-native';
 
 type AppProps = {
     height:number,
     width:number,
 }
 type RenderType = {
+    id:string,
     sender: { 
         id: string; 
         name: string; 
@@ -38,6 +41,7 @@ const data = [
  
   
     {
+        id:'1',
         sender:{
             id:'1',
             name:'Ren',
@@ -57,6 +61,7 @@ const data = [
         ]
     },
     {
+        id:'2',
         sender:{
             id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
             name:'Michel',
@@ -76,6 +81,7 @@ const data = [
         ]
     },
     {
+        id:'3',
         sender:{
             id:'1',
             name:'Ren',
@@ -94,6 +100,46 @@ const data = [
             }
         ]
     },
+    {
+        id:'4',
+        sender:{
+            id:'1',
+            name:'Ren',
+            img_url:require('../../../assets/images/profPics/5.png'),
+        },
+        is_private:true,
+        reciever:{
+            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            name:'Michel',
+            img_url:require('../../../assets/images/profPics/6.png'),
+        },
+        update_history:[
+            {
+                content: "You love Pizza?",
+                updated_at:'2023-01-17T10:19:06.031Z',
+            }
+        ]
+    },
+    {
+        id:'5',
+        sender:{
+            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            name:'Michel',
+            img_url:require('../../../assets/images/profPics/6.png'),
+        },
+        is_private:true,
+        reciever:{
+            id:'1',
+            name:'Ren',
+            img_url:require('../../../assets/images/profPics/5.png'),
+        },
+        update_history:[
+            {
+                content: "Yeh bruh",
+                updated_at:'2023-01-17T10:19:06.031Z',
+            }
+        ]
+    },
 ];
 
 const RenderItem:FC<Render> = memo(({item}):JSX.Element=>{
@@ -104,7 +150,7 @@ const RenderItem:FC<Render> = memo(({item}):JSX.Element=>{
         alignerStyle:{
             marginLeft:itemLength?height*0.025:0,
             margin:itemLength?0:height*0.01,
-            marginTop:itemLength?0:height*0.01,
+            marginTop:itemLength?0:height*0.005,
             marginBottom:itemLength?0:0,
             marginRight:0,
 
@@ -170,12 +216,22 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,}):JSX.Element => {
 
 
     const renderItem:ListRenderItem<RenderType> = ({item})=> <RenderItem item={item} />
+    const keyExtractor = (item:RenderType):string => item.id;
+
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{flex:1}}>
-            <FlatList data={data} inverted={true} renderItem={renderItem}  />
-            <TextInput  style={{margin:height*0.02,marginTop:height*0.01,backgroundColor:colors.zLgray,height:height*0.04}} />
+            <FlatList data={data} inverted={true} renderItem={renderItem} keyExtractor={keyExtractor}  />
+            <View style={{backgroundColor:colors.zLgray,height:height*0.06,width:width*0.98,alignSelf:'center',borderRadius:height*0.04,flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:height*0.01}}>
+                <Pressable>
+                    <Antd name='pluscircle' color={colors.zGray} size={height*0.04} style={{marginLeft:height*0.01}} />
+                </Pressable>
+                <TextInput  style={{height:height*0.05,width:width*0.7,color:colors.secondary,fontSize:height*0.018}}/>
+                <TouchableOpacity style={{height:width*0.1,width:width*0.1,backgroundColor:colors.zBlue,borderRadius:height,marginRight:height*0.01,justifyContent:'center',alignItems:'center'}}>
+                    <FontAws name='send' color={colors.secondary} size={height*0.022}  />
+                </TouchableOpacity>
+            </View>
         </KeyboardAvoidingView>
     )
 }

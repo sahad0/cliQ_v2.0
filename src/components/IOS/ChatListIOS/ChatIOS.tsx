@@ -1,4 +1,4 @@
-import { View, Text, Image, ListRenderItem, ImageSourcePropType, FlatList, Dimensions, Pressable } from 'react-native'
+import { View, Text, Image, ListRenderItem, ImageSourcePropType, FlatList, Pressable } from 'react-native'
 import React, { FC, memo } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import ChatListIOSHeader from './ChatListIOSHeader';
@@ -6,6 +6,7 @@ import ChatListIOSPins from './ChatListIOSPins';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
+import { height, width } from '../../../utils/Dimension';
 
 type AppProps = {
     height:number,
@@ -78,7 +79,6 @@ const data = [
 
 
     const ListHeaderComp = ():JSX.Element =>{
-        const {height,width} = Dimensions.get('screen');
 
         return(
             <>
@@ -91,7 +91,6 @@ const data = [
 
         const {colors} = useAppSelector((state)=>state.cart.color.value);
 
-        const {height,width} = Dimensions.get('screen');
         const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
         return(
         <>

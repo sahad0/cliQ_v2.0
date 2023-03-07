@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function ChatList():JSX.Element {
 
-    const {height,width} = Dimensions.get('screen');
+    
 
 
 

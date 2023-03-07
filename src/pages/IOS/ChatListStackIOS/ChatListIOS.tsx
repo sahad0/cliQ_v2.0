@@ -6,10 +6,10 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
+import { height, width } from '../../../utils/Dimension';
 
 const ChatListIOS = () => {
   const {colors} = useAppSelector((state)=>state.cart.color.value);
-  const{height,width} = Dimensions.get('screen');
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
   
 

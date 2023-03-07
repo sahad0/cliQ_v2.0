@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS';
 import axios from 'axios';
 import { profileController } from '../../store/store';
+import { height, width } from '../../utils/Dimension';
 
 export type TabStackParams ={
   ChatListIOS:undefined,
@@ -25,7 +26,7 @@ const Tab = createBottomTabNavigator<TabStackParams>();
 
 export default function TabNavigatorsIOS():JSX.Element {
 
-  const {height,width} = Dimensions.get('screen');
+  
 
 
   const {colors} = useAppSelector((state)=>state.cart.color.value);

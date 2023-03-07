@@ -1,4 +1,4 @@
-import { View, Text, Image, Dimensions, Pressable, TouchableOpacity } from 'react-native'
+import { View, Text, Image, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Switch } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -7,13 +7,13 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Antd from 'react-native-vector-icons/AntDesign';
 import { useAppDispatch } from '../Hooks/hooks';
 import { logoutController } from '../store/store';
+import { height, width } from '../utils/Dimension';
 
 
 type Switch=boolean;
 
 export default function DrawerContent() {
 
-    const {height,width} = Dimensions.get('screen');
 
     const [isSwitchOn, setIsSwitchOn] = React.useState<Switch>(false);
     const [logout, SetLogout] = React.useState<Switch>(false);

@@ -1,12 +1,12 @@
-import { View, Text, Dimensions, TouchableOpacity, Keyboard, KeyboardAvoidingView, SafeAreaView } from 'react-native'
+import { TouchableOpacity, Keyboard, KeyboardAvoidingView, SafeAreaView } from 'react-native'
 import React from 'react'
 import LoginHeader from '../../../components/CommonComp/Login/LoginHeader';
 import ForgetPasswordForm from '../../../components/CommonComp/ForgetPassword/ForgetPasswordForm';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 export default function ForgotPassword():JSX.Element {
 
-    const {width,height} = Dimensions.get('screen');
     const {colors} = useAppSelector((state)=>state.cart.color.value);
     const text1 = 'Forgot Password';
     const text2 = 'Enter your registered email address, mobile number, or username to change your Zoho account password.'

@@ -5,10 +5,10 @@ import CreateOrgHeader from '../../../components/CommonComp/CreateOrganization/C
 import CreateOrgBody from '../../../components/CommonComp/CreateOrganization/CreateOrgBody';
 import CreateOrgFooter from '../../../components/CommonComp/CreateOrganization/CreateOrgFooter';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 export default function CreateOrganization():JSX.Element {
 
-    const {width, height} =Dimensions.get('screen');
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
 

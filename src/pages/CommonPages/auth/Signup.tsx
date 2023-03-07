@@ -4,13 +4,13 @@ import SignupHeader from '../../../components/CommonComp/Signup/SignupHeader';
 import SignUpForm from '../../../components/CommonComp/Signup/SignUpForm';
 import SignupFooter from '../../../components/CommonComp/Signup/SignupFooter';
 import { useAppSelector } from '../../../Hooks/hooks';
+import { height, width } from '../../../utils/Dimension';
 
 
 
 
 const Signup = ():JSX.Element => {
 
-    const {width,height} = Dimensions.get('screen');
     const {colors} = useAppSelector((state)=>state.cart.color.value);
 
 
