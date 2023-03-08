@@ -5,8 +5,8 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 import Ion from 'react-native-vector-icons/Ionicons';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Material from 'react-native-vector-icons/MaterialCommunityIcons'
 import { height, width } from '../../../utils/Dimension';
+import AddComponent from '../../../Extra/AddComponent';
 
 
 type RenderProp = {
@@ -23,7 +23,7 @@ const ListHeader = ():JSX.Element =>{
   
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'PinsIOS'>>();
   return(
-    <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.04,}}>
+    <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.02,}}>
       <Text style={{color:colors.secondary,fontSize:height*0.024,fontWeight:'600'}}>Pins</Text>
       <TouchableOpacity onPress={()=>navigation.goBack()}>
         <Ion name='ios-close' size={height*0.02} color={colors.secondary} />
@@ -75,13 +75,10 @@ const PinsIOS = ():JSX.Element => {
   return (
     <View style={{backgroundColor:colors.zBlack,flex:1}}>
      
+      <ListHeader />
 
-
-      <FlatList  ListHeaderComponent={ListHeader} keyExtractor={keyExtractor} showsVerticalScrollIndicator={false} style={{marginTop:height*0.02}}  data={data} renderItem={renderItem} numColumns={2}    />
-      <View  style={{backgroundColor:colors.zBlue,height:height*0.06,width:height*0.06,borderRadius:height,position:'absolute',alignItems:'center',justifyContent:'center',top:'87%',left:'80%'}}>
-      <Material name='plus' size={height*0.028}  color={'white'} />
-
-      </View>
+      <FlatList keyExtractor={keyExtractor} showsVerticalScrollIndicator={false} style={{marginTop:height*0.02}}  data={data} renderItem={renderItem} numColumns={2}    />
+      <AddComponent />
 
     </View>
   )

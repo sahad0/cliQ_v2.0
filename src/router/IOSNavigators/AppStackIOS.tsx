@@ -5,6 +5,7 @@ import { ImageSourcePropType, LogBox } from "react-native";
 import PinsIOS from '../../pages/IOS/ChatListStackIOS/PinsIOS';
 import StartChatIOS from '../../pages/IOS/ChatListStackIOS/StartChatIOS';
 import ChatViewIOS from '../../pages/IOS/ChatListStackIOS/ChatViewIOS';
+import Invite from '../../pages/IOS/ChatListStackIOS/Invite';
 
 
 LogBox.ignoreLogs(["Sending `onAnimatedValueUpdate` with no listeners registered.",]);
@@ -22,6 +23,7 @@ export type AppStackIOSParams = {
       }
     },
     StartChat:undefined,
+    Invite:undefined,
 }
 
 export default function AppStackIOS() {
@@ -37,7 +39,8 @@ export default function AppStackIOS() {
         <Stack.Screen   name='TabNavigatorsIOS' component={TabNavigatorsIOS} />
         <Stack.Screen   name='PinsIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={PinsIOS} />
         <Stack.Screen   name='StartChat' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={StartChatIOS} />
-        <Stack.Screen   name='ChatViewIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'horizontal',cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,detachPreviousScreen:false}} component={ChatViewIOS} />
+        <Stack.Screen   name='ChatViewIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'horizontal',cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={ChatViewIOS} />
+        <Stack.Screen   name='Invite'  options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={Invite} />
       
       </Stack.Navigator>
     )

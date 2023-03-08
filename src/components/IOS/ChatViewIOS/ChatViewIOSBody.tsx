@@ -223,13 +223,13 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,}):JSX.Element => {
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{flex:1}}>
             <FlatList data={data} inverted={true} renderItem={renderItem} keyExtractor={keyExtractor}  />
-            <View style={{backgroundColor:colors.zLgray,height:height*0.06,width:width*0.98,alignSelf:'center',borderRadius:height*0.04,flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:height*0.01}}>
+            <View style={{backgroundColor:colors.zLgray,height:height*0.055,width:width*0.96,alignSelf:'center',borderRadius:height*0.04,flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:height*0.01}}>
                 <Pressable>
                     <Antd name='pluscircle' color={colors.zGray} size={height*0.04} style={{marginLeft:height*0.01}} />
                 </Pressable>
-                <TextInput  style={{height:height*0.05,width:width*0.7,color:colors.secondary,fontSize:height*0.018}}/>
-                <TouchableOpacity style={{height:width*0.1,width:width*0.1,backgroundColor:colors.zBlue,borderRadius:height,marginRight:height*0.01,justifyContent:'center',alignItems:'center'}}>
-                    <FontAws name='send' color={colors.secondary} size={height*0.022}  />
+                <TextInput placeholderTextColor={colors.placeholderColor} placeholder='Type your message here..' style={{height:height*0.05,width:width*0.7,color:colors.secondary,fontSize:height*0.018}}/>
+                <TouchableOpacity style={{height:width*0.09,width:width*0.09,backgroundColor:colors.zBlue,borderRadius:height,marginRight:height*0.01,justifyContent:'center',alignItems:'center'}}>
+                    <FontAws name='send' color={colors.secondary} size={height*0.02}  />
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>

@@ -24,6 +24,8 @@ export const IosColors:Colors = {
         zBlue:'#1c6ba3',
         zGray:'#6b6b6b',
         zLgray:'#282828',
+        placeholderColor:'rgba(255,255,255,0.4)',
+        iconLight:'rgba(255,255,255,0.6)'
     }
     
 
