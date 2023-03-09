@@ -1,9 +1,15 @@
 import { View, Text, Dimensions, SafeAreaView } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useAppDispatch } from '../../../Hooks/hooks';
+import { logoutController } from '../../../store/store';
 
 export default function ChatList():JSX.Element {
 
+  const dispatch = useAppDispatch();
     
+  useEffect(()=>{
+    dispatch(logoutController());
+  },[]);
 
 
 

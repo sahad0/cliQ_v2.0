@@ -10,7 +10,6 @@ import Antd from 'react-native-vector-icons/AntDesign';
 import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS';
 import axios from 'axios';
-import { profileController } from '../../store/store';
 import { height, width } from '../../utils/Dimension';
 
 export type TabStackParams ={
@@ -34,9 +33,10 @@ export default function TabNavigatorsIOS():JSX.Element {
 
     
   return (
-    <Tab.Navigator  initialRouteName='ChatListIOS' screenOptions={{headerShown:false,tabBarStyle:{borderTopColor:colors.zBlack,backgroundColor:colors.zBlack,height:height*0.11}, }}>
+    <Tab.Navigator    initialRouteName='ChatListIOS' screenOptions={{headerShown:false,tabBarStyle:{borderTopColor:colors.zBlack,backgroundColor:colors.zBlack,height:height*0.11}, }}>
          
-         <Tab.Screen name="ChatListIOS" component={ChatListIOS} options={{
+         <Tab.Screen  name="ChatListIOS" component={ChatListIOS}  options={{
+          
             tabBarLabel:()=>null,
             
             tabBarIcon: ({focused}) => {
@@ -51,6 +51,7 @@ export default function TabNavigatorsIOS():JSX.Element {
                 </>
               );
             },
+            
           }} />
           <Tab.Screen name="ChannelList" component={CallList} options={{
             tabBarLabel:()=>null,

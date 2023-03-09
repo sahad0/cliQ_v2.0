@@ -1,9 +1,12 @@
-import { View, Text, TextInput, Pressable, Image, KeyboardAvoidingView, Platform, ImageSourcePropType, FlatList, ListRenderItem } from 'react-native'
+import { View, Text, TextInput, Pressable, Image, KeyboardAvoidingView, Platform, ImageSourcePropType, FlatList, ListRenderItem, RefreshControl } from 'react-native'
 import React, { FC, memo } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import { StyleSheet } from 'react-native';
 import { height, width } from '../../../utils/Dimension';
 import { IosColors } from '../../../utils/Colors';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 
 
 type AppProps = {
@@ -86,10 +89,11 @@ const StartChatIOSList:FC<AppProps> = ({}) => {
 
     const renderItem:ListRenderItem<RenderType> = ({item})=> <RenderItem item={item} />
     const keyExtractor = (item:RenderType):string => item.id;
+    const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'StartChat'>>();
 
 
     return (
-            <FlatList data={data} ListHeaderComponent={HeaderComp}  renderItem={renderItem} keyExtractor={keyExtractor}  />
+            <FlatList   refreshControl={<RefreshControl progressViewOffset={1} tintColor={'transparent'} refreshing={false} onRefresh={()=>navigation.goBack()} />} data={data} ListHeaderComponent={HeaderComp}  renderItem={renderItem} keyExtractor={keyExtractor}  />
         )
 }
 

@@ -8,6 +8,7 @@ import { loginController } from '../store/store';
 import requestStatus, { initial_state } from '../utils/LoaderHandling';
 import { passwordSchema } from './YupSchema/Schema';
 import { Fonts } from '../utils/Fonts';
+import { create } from 'react-test-renderer';
 
 
 type Props = {
@@ -52,11 +53,12 @@ const AuthAnimated:FC<Props> = ({height,width,inputStr,btnStr,user,setUser}:Prop
                     Authorization : `Bearer ${data.token}`
                     }
                 })
+                const {profile} = ((await createHeader('/auth/profile',{timeout:5000,method:'GET'})).data);
                 const data1 = await createHeader.get('organization/user-organizations');
                 if(data1){
                   const {organizations} = data1.data;
                   const orgNewUser = organizations.length>0 ? false:true
-                  dispatch(loginController({token:data.token,orgNewUser:orgNewUser,profile:null}));
+                  dispatch(loginController({token:data.token,orgNewUser:orgNewUser,profile:profile}));
                   setEventReducer({type:'success'});
                 }
             }

@@ -18,7 +18,7 @@ const InviteBody:FC<AppProps> = ({height,width}) => {
   return (
     <>
     <View style={{backgroundColor:'#040404',height:height*0.06,margin:height*0.02,borderRadius:height*0.01,}}>
-        <TextInput placeholder='Email' placeholderTextColor={colors.placeholderColor} style={{height:height*0.06,fontSize:height*0.018,paddingLeft:height*0.03}} />
+        <TextInput placeholder='Email' placeholderTextColor={colors.placeholderColor} style={{height:height*0.06,fontSize:height*0.018,paddingLeft:height*0.03,color:colors.secondary}} />
     </View>
     <Pressable style={{backgroundColor:'#021225',alignSelf:'flex-end',margin:height*0.03,borderRadius:height*0.01,flexDirection:'row'}}>
             {/* <ActivityIndicator color={'#0f69d7'} style={{margin:height*0.01,marginRight:0}} /> */}

@@ -62,8 +62,16 @@ type focusBool = true|false;
                 const val = {...user,...values};
                 const {data}=  await axios.post('/auth/register',val);
                 if(data){
+                  const createHeader = axios.create({
+                    headers: {
+                      Authorization : `Bearer ${data.token}`
+                      }
+                  })
+                const {profile} = ((await createHeader('/auth/profile',{timeout:5000,method:'GET'})).data);
+
                   setError({set:false,message:''})
-                  dispatch(loginController({token:data.token,orgNewUser:true,profile:null}));
+
+                  dispatch(loginController({token:data.token,orgNewUser:true,profile:profile}));
                 }
               
                 setEventReducer({type:'success'});

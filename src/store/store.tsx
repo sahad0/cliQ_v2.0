@@ -51,8 +51,8 @@ const storeSlice = createSlice({
     reducers: {
         loginController: (state, action:PayloadAction<StoreValue>) => {
              
-            const {token,orgNewUser} = action.payload;
-            state.value = {...state.value,token,orgNewUser};
+            const {token,orgNewUser,profile} = action.payload;
+            state.value = {...state.value,token,orgNewUser,profile};
         },
         logoutController : (state) => {
             const temp = {token:"",orgNewUser:false,profile:null}
@@ -63,13 +63,9 @@ const storeSlice = createSlice({
             const {orgNewUser} = action.payload;
             state.value = {...state.value,orgNewUser};
         },
-        profileController: (state,action:PayloadAction<Profile>) =>{
-            const {profile} = action.payload;
-            state.value.profile = profile;
-        }
     }
 })
 
-export const { loginController ,logoutController ,userTypeController ,profileController} = storeSlice.actions;
+export const { loginController ,logoutController ,userTypeController } = storeSlice.actions;
 
 export default storeSlice.reducer;

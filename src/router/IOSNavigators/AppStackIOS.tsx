@@ -36,7 +36,7 @@ export default function AppStackIOS() {
 
       <Stack.Navigator  screenOptions={{headerShown:false,animationEnabled:true,}} initialRouteName='TabNavigatorsIOS'>
         
-        <Stack.Screen   name='TabNavigatorsIOS' component={TabNavigatorsIOS} />
+        <Stack.Screen   name='TabNavigatorsIOS' options={{animationEnabled:true,gestureEnabled:true,cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,}}  component={TabNavigatorsIOS} />
         <Stack.Screen   name='PinsIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={PinsIOS} />
         <Stack.Screen   name='StartChat' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={StartChatIOS} />
         <Stack.Screen   name='ChatViewIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'horizontal',cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={ChatViewIOS} />

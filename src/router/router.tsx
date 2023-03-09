@@ -3,11 +3,12 @@ import { useAppDispatch, useAppSelector } from '../Hooks/hooks';
 import axios from 'axios';
 import AuthNav from './Common/AuthNav';
 import { Platform } from 'react-native';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { colorController } from '../store/colorStore';
 import NewUserStackNav from './Common/NewUserStackNav';
 import ExistingUserNavAndroid from './AndroidNavigators/ExistingUserNavAndroid';
 import ExistingUserNavIOS from './IOSNavigators/ExistingUserNavIOS';
+import { logoutController } from '../store/store';
 
 
 
@@ -30,6 +31,8 @@ export default function Router():JSX.Element {
   const auth = token;
   const newUser = orgNewUser;
   axios.defaults.headers.common['Authorization'] = `Bearer ${auth}`;
+  const {profile} = useAppSelector((state)=>state.cart.auth.value);
+  
 
 
   useEffect(()=>{
@@ -43,7 +46,7 @@ export default function Router():JSX.Element {
 
 
 
-  
+
 
   return (
     <NavigationContainer >
