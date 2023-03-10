@@ -23,7 +23,7 @@ export const IosColors:Colors = {
         zBlack:'#0b0b0b',
         zBlue:'#1c6ba3',
         zGray:'#6b6b6b',
-        zLgray:'#282828',
+        zLgray:'#212121',
         placeholderColor:'rgba(255,255,255,0.4)',
         iconLight:'rgba(255,255,255,0.6)',
         zRed:'rgb(255,69,58)',

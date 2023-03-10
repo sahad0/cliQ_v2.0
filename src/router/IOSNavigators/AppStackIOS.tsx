@@ -6,6 +6,7 @@ import PinsIOS from '../../pages/IOS/ChatListStackIOS/PinsIOS';
 import StartChatIOS from '../../pages/IOS/ChatListStackIOS/StartChatIOS';
 import ChatViewIOS from '../../pages/IOS/ChatListStackIOS/ChatViewIOS';
 import Invite from '../../pages/IOS/ChatListStackIOS/Invite';
+import Profile from '../../pages/IOS/Profile/Profile';
 
 
 LogBox.ignoreLogs(["Sending `onAnimatedValueUpdate` with no listeners registered.",]);
@@ -24,6 +25,7 @@ export type AppStackIOSParams = {
     },
     StartChat:undefined,
     Invite:undefined,
+    Profile:undefined,
 }
 
 export default function AppStackIOS() {
@@ -41,7 +43,8 @@ export default function AppStackIOS() {
         <Stack.Screen   name='StartChat' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={StartChatIOS} />
         <Stack.Screen   name='ChatViewIOS' options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'horizontal',cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}} component={ChatViewIOS} />
         <Stack.Screen   name='Invite'  options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={Invite} />
-      
+        <Stack.Screen   name='Profile'  options={{animationEnabled:true,gestureEnabled:true,gestureDirection:'vertical',cardStyleInterpolator:CardStyleInterpolators.forModalPresentationIOS,detachPreviousScreen:false}} component={Profile} />
+
       </Stack.Navigator>
     )
   

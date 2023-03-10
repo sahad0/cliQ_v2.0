@@ -82,7 +82,6 @@ const data = [
 
         return(
             <>
-                <ChatListIOSHeader height={height} width={width} />
                 <ChatListIOSPins height={height} width={width} />
             </>
     )}
@@ -134,7 +133,10 @@ const ChatIOS:FC<AppProps> = ({height,width}):JSX.Element => {
     )
 
   return (
-    <FlatList showsVerticalScrollIndicator={false} data={data} ListHeaderComponent={ListHeaderComp} renderItem={renderItem} keyExtractor={keyExtractor} getItemLayout={Layout} />
+    <>
+        <ChatListIOSHeader height={height} width={width} />
+        <FlatList showsVerticalScrollIndicator={false} data={data} ListHeaderComponent={ListHeaderComp} renderItem={renderItem} keyExtractor={keyExtractor} getItemLayout={Layout} />
+    </>
   )
 }
 

@@ -8,6 +8,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { height, width } from '../../../utils/Dimension';
 import AddComponent from '../../../Extra/AddComponent';
 import Animated, { useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
+import Antd from 'react-native-vector-icons/AntDesign';
+
 
 type ShowType = boolean
 
@@ -33,9 +35,9 @@ const ListHeader:FC<HeaderProp> = ({setShowEdit,showEdit}):JSX.Element =>{
   return(
     <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.02,}}>
       <TouchableOpacity onPress={()=>navigation.goBack()}>
-        <Ion name='ios-close' size={height*0.02} color={colors.secondary} />
+        <Ion name='ios-close' size={height*0.03} color={colors.secondary} />
       </TouchableOpacity>
-      <Text style={{color:colors.secondary,fontSize:height*0.024,fontWeight:'600'}}>Pins</Text>
+      <Text style={{color:colors.secondary,fontSize:height*0.024,fontWeight:'600'}}>My Pins</Text>
       <Pressable onPress={()=>{setShowEdit(!showEdit)}}>
         <Text style={{color:colors.zBlue,fontSize:height*0.018,}}>Edit</Text>
       </Pressable>
@@ -53,10 +55,10 @@ const RenderItem:FC<Render> = memo(({item,showEdit})=>{
 
   useEffect(()=>{
     // if(showEdit){
-      sharedValue.value = withRepeat(withSequence(withTiming(10,{duration:100}), withTiming(-10,{duration:100}), withTiming(10,{duration:100}), withTiming(0,{duration:100})))
+      sharedValue.value = withRepeat(withSequence(withTiming(100,{duration:100}), withTiming(-100,{duration:100}), withTiming(100,{duration:100}), withTiming(0,{duration:100})))
     // }
     // else{
-      sharedValue.value=0;
+      // sharedValue.value=0;
     // }
   },[]);  
 
@@ -65,8 +67,9 @@ const RenderItem:FC<Render> = memo(({item,showEdit})=>{
       {item.imgUrl ? 
       <>
         <Image source={item.imgUrl} style={{height:height*0.08,width:height*0.08,borderRadius:height,}} />
-       { showEdit&& <View style={{height:height*0.016,width:height*0.016,position:'absolute',left:'60%',borderRadius:height,backgroundColor:colors.zRed}}>
-          <Text style={{color:colors.secondary,fontSize:height*0.013,alignSelf:'center',fontWeight:'700'}}>-</Text>
+       { showEdit&& 
+       <View style={{height:height*0.018,width:height*0.018,position:'absolute',left:'60%',borderRadius:height,backgroundColor:colors.zBlack,borderWidth:1,}}>
+          <Antd name='minuscircle' size={height*0.015} color={colors.zRed} />
         </View>}
       </>
       :
@@ -95,14 +98,19 @@ const PinsIOS = ():JSX.Element => {
   const renderItem:ListRenderItem<RenderProp> = ({item}) =>(<RenderItem showEdit={showEdit} item={item} />);
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'PinsIOS'>>();
   const [showEdit,setShowEdit] = useState<ShowType>(false);
+  // const [handle,setHandle] = useState(true);
 
+  // useEffect(()=>{
+  //   console.log(handle)
+  // },[handle]);
 
 
   return (
     <View style={{backgroundColor:colors.zBlack,flex:1}}>
      
       <ListHeader setShowEdit={setShowEdit} showEdit={showEdit} />
-        <FlatList   keyExtractor={keyExtractor} showsVerticalScrollIndicator={false} style={{marginTop:height*0.02,}} refreshControl={<RefreshControl progressViewOffset={1} tintColor={'transparent'} refreshing={false} onRefresh={()=>navigation.goBack()} />} data={data} renderItem={renderItem} numColumns={3} horizontal={false}    />
+        <FlatList    keyExtractor={keyExtractor} showsVerticalScrollIndicator={false} style={{marginTop:height*0.02,}}  data={data} renderItem={renderItem} numColumns={3} horizontal={false}    />
+        {/* refreshControl={<RefreshControl progressViewOffset={1} tintColor={'transparent'} refreshing={false} onRefresh={()=>navigation.goBack()} />} */}
       <AddComponent routeName='hello' />
 
     </View>

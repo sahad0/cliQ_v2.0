@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS';
 import axios from 'axios';
 import { height, width } from '../../utils/Dimension';
+import ChannelListIOS from '../../pages/IOS/ChannelListStackIOS/ChannelListIOS';
 
 export type TabStackParams ={
   ChatListIOS:undefined,
@@ -53,7 +54,7 @@ export default function TabNavigatorsIOS():JSX.Element {
             },
             
           }} />
-          <Tab.Screen name="ChannelList" component={CallList} options={{
+          <Tab.Screen name="ChannelList" component={ChannelListIOS} options={{
             tabBarLabel:()=>null,
             
             tabBarIcon: ({size,focused,color}) => {
