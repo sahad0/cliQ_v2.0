@@ -7,6 +7,10 @@ interface StoreValue extends UserType,Profile {
 type UserType = {
     orgNewUser: boolean|null,
 }
+type StatusType =  "AVAILABLE"|"BUSY"|"AWAY"|"INVISIBLE"
+type Status = {
+    status: StatusType
+}
 
 type Profile ={
     profile:{
@@ -18,7 +22,7 @@ type Profile ={
         language: string, 
         last_name: string, 
         mini_avatar_url: string, 
-        status: "AVAILABLE"|"BUSY"|"AWAY"|"INVISIBLE", 
+        status: StatusType, 
         timezone: string, 
         user_id: string
     }|null;
@@ -63,9 +67,16 @@ const storeSlice = createSlice({
             const {orgNewUser} = action.payload;
             state.value = {...state.value,orgNewUser};
         },
+        statusController : (state,action:PayloadAction<Status>) => {
+                const {status} = action.payload;
+                if(state.value.profile){
+                    state.value.profile.status = status;
+                }
+
+        }
     }
 })
 
-export const { loginController ,logoutController ,userTypeController } = storeSlice.actions;
+export const { loginController ,logoutController ,userTypeController ,statusController } = storeSlice.actions;
 
 export default storeSlice.reducer;

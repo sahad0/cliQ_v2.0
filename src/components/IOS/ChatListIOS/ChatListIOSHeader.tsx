@@ -17,7 +17,7 @@ const ChatListIOSHeader:FC<AppProps> = ({height,width}):JSX.Element => {
 
   return (
     <View style={{height:height*0.1,backgroundColor:colors.zBlack,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
-        <Pressable onPress={()=>navigation.navigate('Profile')} style={{width:width*0.1,height:width*0.1,margin:height*0.018,marginTop:0,}}>
+        <Pressable onPress={()=>navigation.navigate('ProfileStackIOS')} style={{width:width*0.1,height:width*0.1,margin:height*0.018,marginTop:0,}}>
             <Image source={require('../../../assets/images/item.jpg')} style={{height:width*0.09,width:width*0.09,borderRadius:height,}} resizeMode={'cover'} />
             <View style={{height:height*0.012,width:height*0.012,backgroundColor:'#32D74B',position:'absolute',borderRadius:height,left:'65%',top:'58%',borderColor:colors.zBlack,borderWidth:1}} />
         </Pressable>

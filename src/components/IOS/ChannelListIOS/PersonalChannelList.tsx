@@ -6,6 +6,9 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { height } from '../../../utils/Dimension';
 import OrganizationalChannelList from './OrganizationalChannelList';
 import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 
 type AppProps = {
     height:number,
@@ -75,10 +78,11 @@ const PersonalChannelList:FC<AppProps> = ({height,width}):JSX.Element => {
 
     const renderItem:ListRenderItem<RenderType> = ({item})=><RenderItem item={item} />
 
-    const keyExtractor = (item:RenderType):string=> item.id
+    const keyExtractor = (item:RenderType):string=> item.id;
+
 
   return (
-    <FlatList ListHeaderComponent={HeaderComp} data={data} renderItem={renderItem} keyExtractor={keyExtractor} style={{flex:1,margin:height*0.02}} />
+    <FlatList  ListHeaderComponent={HeaderComp} data={data} renderItem={renderItem} keyExtractor={keyExtractor} style={{flex:1,margin:height*0.02}} />
   )
 }
 

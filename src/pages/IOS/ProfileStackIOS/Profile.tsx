@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
-import ProfileHeader from '../../../components/IOS/Profile/ProfileHeader';
+import ProfileHeader from '../../../components/IOS/ProfileStackIOS/Profile/ProfileHeader';
 import { height, width } from '../../../utils/Dimension';
 
 

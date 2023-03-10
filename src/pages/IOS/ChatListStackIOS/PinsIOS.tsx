@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, Dimensions, ImageSourcePropType, ListRenderItem, Image, FlatList, TouchableOpacity, RefreshControl, Pressable } from 'react-native'
-import React, { Dispatch, FC, memo, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, FC, memo, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
@@ -9,6 +9,7 @@ import { height, width } from '../../../utils/Dimension';
 import AddComponent from '../../../Extra/AddComponent';
 import Animated, { useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import Antd from 'react-native-vector-icons/AntDesign';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 
 
 type ShowType = boolean
@@ -98,6 +99,7 @@ const PinsIOS = ():JSX.Element => {
   const renderItem:ListRenderItem<RenderProp> = ({item}) =>(<RenderItem showEdit={showEdit} item={item} />);
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'PinsIOS'>>();
   const [showEdit,setShowEdit] = useState<ShowType>(false);
+  const ref = useRef();
   // const [handle,setHandle] = useState(true);
 
   // useEffect(()=>{
@@ -106,14 +108,16 @@ const PinsIOS = ():JSX.Element => {
 
 
   return (
-    <View style={{backgroundColor:colors.zBlack,flex:1}}>
+    // <PanGestureHandler  >
+    <View  style={{backgroundColor:colors.zBlack,flex:1}}>
      
       <ListHeader setShowEdit={setShowEdit} showEdit={showEdit} />
-        <FlatList    keyExtractor={keyExtractor} showsVerticalScrollIndicator={false} style={{marginTop:height*0.02,}}  data={data} renderItem={renderItem} numColumns={3} horizontal={false}    />
+        <FlatList scrollEnabled={false}    keyExtractor={keyExtractor} showsVerticalScrollIndicator={false} style={{marginTop:height*0.02,}}  data={data} renderItem={renderItem} numColumns={3} horizontal={false}    />
         {/* refreshControl={<RefreshControl progressViewOffset={1} tintColor={'transparent'} refreshing={false} onRefresh={()=>navigation.goBack()} />} */}
       <AddComponent routeName='hello' />
 
     </View>
+    // </PanGestureHandler>
   )
 }
 

@@ -131,11 +131,16 @@ const ChatIOS:FC<AppProps> = ({height,width}):JSX.Element => {
     const Layout = (data:RenderProp[]| null | undefined, index:number):{length:number,offset:number,index:number} => (
         {length: height*0.091, offset: (height*0.091 * index), index}
     )
+    const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
 
   return (
     <>
         <ChatListIOSHeader height={height} width={width} />
-        <FlatList showsVerticalScrollIndicator={false} data={data} ListHeaderComponent={ListHeaderComp} renderItem={renderItem} keyExtractor={keyExtractor} getItemLayout={Layout} />
+        <FlatList onScroll={(e)=>{
+        if(e.nativeEvent.contentOffset.y<-10){
+            navigation.navigate('Search');
+        }
+    }} showsVerticalScrollIndicator={false} data={data} ListHeaderComponent={ListHeaderComp} renderItem={renderItem} keyExtractor={keyExtractor} getItemLayout={Layout} />
     </>
   )
 }

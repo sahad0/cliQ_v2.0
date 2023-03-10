@@ -1,5 +1,5 @@
 import { View, Text, TextInput, Pressable, Image, KeyboardAvoidingView, Platform, ImageSourcePropType, FlatList, ListRenderItem, RefreshControl } from 'react-native'
-import React, { FC, memo } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import { StyleSheet } from 'react-native';
 import { height, width } from '../../../utils/Dimension';
@@ -90,10 +90,20 @@ const StartChatIOSList:FC<AppProps> = ({}) => {
     const renderItem:ListRenderItem<RenderType> = ({item})=> <RenderItem item={item} />
     const keyExtractor = (item:RenderType):string => item.id;
     const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'StartChat'>>();
+    const [handle,setHandle] = useState(false);
 
 
     return (
-            <FlatList   refreshControl={<RefreshControl progressViewOffset={1} tintColor={'transparent'} refreshing={false} onRefresh={()=>navigation.goBack()} />} data={data} ListHeaderComponent={HeaderComp}  renderItem={renderItem} keyExtractor={keyExtractor}  />
+            <FlatList onScroll={(e)=>{
+              if(e.nativeEvent.contentOffset.y<0){
+                setHandle(true);
+              }
+              else{
+                setHandle(false);
+              }
+            }}
+            onResponderTerminationRequest={_ => true}
+            data={data} ListHeaderComponent={HeaderComp}  renderItem={renderItem} keyExtractor={keyExtractor}  />
         )
 }
 
