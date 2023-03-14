@@ -1,4 +1,4 @@
-import { View, Text, ListRenderItem } from 'react-native'
+import { View, Text, ListRenderItem, StyleSheet, Platform } from 'react-native'
 import React, { FC } from 'react'
 import { FlatList } from 'react-native-gesture-handler'
 import { useAppSelector } from '../../../Hooks/hooks'
@@ -9,6 +9,7 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
+import { AndroidColors, IosColors } from '../../../utils/Colors';
 
 type AppProps = {
     height:number,
@@ -57,8 +58,8 @@ const HeaderComp = ()=>{
         <>
             <OrganizationalChannelList />
             <View style={{flexDirection:'row',alignItems:'center',marginTop:height*0.05}}>
-                <Material name='radioactive-circle-outline' color={colors.zBlue} size={height*0.03} />
-                <Text style={{color:colors.zBlue,fontSize:height*0.020,marginLeft:height*0.01}}>Personal Channels</Text>
+                <Material name='radioactive-circle-outline' color={colors.zBlue} size={height*0.025}  />
+                <Text style={{color:colors.zBlue,fontSize:height*0.018,marginLeft:height*0.01,fontWeight:'600'}}>Personal Channels</Text>
             </View>
         </>
     )
@@ -69,8 +70,8 @@ const RenderItem:FC<Render> = ({item}):JSX.Element =>{
 
     return(
         <TouchableOpacity style={{marginTop:height*0.02,flexDirection:'row',alignItems:'center'}}>
-            <Text style={{color:colors.zGray,fontSize:height*0.023,marginLeft:height*0.01}}>#</Text>
-            <Text style={{color:colors.secondary,fontSize:height*0.020,marginLeft:height*0.02,fontWeight:'600'}}>{item.name}</Text>
+            <Text style={styles.hashStyle}>#</Text>
+            <Text style={styles.textStyle}>{item.name}</Text>
         </TouchableOpacity>
     )}
 
@@ -82,8 +83,16 @@ const PersonalChannelList:FC<AppProps> = ({height,width}):JSX.Element => {
 
 
   return (
-    <FlatList  ListHeaderComponent={HeaderComp} data={data} renderItem={renderItem} keyExtractor={keyExtractor} style={{flex:1,margin:height*0.02}} />
+    <FlatList  ListHeaderComponent={HeaderComp} data={data} renderItem={renderItem} keyExtractor={keyExtractor} style={{flex:1,margin:height*0.02,marginBottom:0,marginTop:height*0.01}} />
   )
 }
+
+
+
+const styles = StyleSheet.create({
+    hashStyle: {color:IosColors.colors.zGray,fontSize:height*0.023,marginLeft:height*0.01},
+    textStyle: {color: Platform.OS==='ios' ?IosColors.colors.secondary :AndroidColors.colors.secondary ,fontSize:Platform.OS==='ios'? height*0.020 : height*0.018,marginLeft:height*0.02,fontWeight:'500'}
+})
+
 
 export default PersonalChannelList

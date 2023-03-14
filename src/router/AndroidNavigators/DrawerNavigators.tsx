@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import CreateChannelStackNav from './CreateChannelStackNav';
+import CreateChannelStackNav from './AndroidStackNav';
 import axios, { AxiosResponse } from 'axios';
 import { useAppDispatch } from '../../Hooks/hooks';
-import { logoutController, profileController } from '../../store/store';
+import { logoutController } from '../../store/store';
 import DrawerContent from '../../Extra/DrawerContent';
+import { width } from '../../utils/Metrics';
 
 
 export type DrawerStackParams ={
@@ -17,27 +18,15 @@ const Drawer = createDrawerNavigator<DrawerStackParams>();
 
 const DrawerNavigators = ():JSX.Element => {
 
-  const dispatch = useAppDispatch();
-
-  useEffect(()=>{
-    fetchProfile();
-  },[]);
 
 
-  const fetchProfile = async():Promise<void>=>{
-    try {
-        const {profile} = (await (await axios('/auth/profile',{timeout:5000,method:'GET'})).data);
-        dispatch(profileController({profile}));
-    }catch(err){
-        dispatch(logoutController());
-    }
-  }
 
   return (
    
-    <Drawer.Navigator useLegacyImplementation={false}  drawerContent={DrawerContent} screenOptions={{headerShown:false,}}>
+    <Drawer.Navigator useLegacyImplementation={false}   drawerContent={DrawerContent} screenOptions={{headerShown:false,drawerStyle:{width:width(295)}}}>
         
         <Drawer.Screen name="CreateChannelStackNav" component={CreateChannelStackNav} /> 
+
 
     </Drawer.Navigator> 
   )
