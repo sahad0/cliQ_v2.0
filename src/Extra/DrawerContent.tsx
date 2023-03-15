@@ -7,7 +7,7 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import FontAws from 'react-native-vector-icons/FontAwesome'
 import Antd from 'react-native-vector-icons/AntDesign';
-import { useAppDispatch } from '../Hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../Hooks/hooks';
 import { logoutController } from '../store/store';
 import {horizontalScale,moderateScale,verticalScale} from '../utils/Metrics';
 import { AndroidColors } from '../utils/Colors';
@@ -22,7 +22,7 @@ export default function DrawerContent() {
     const [isSwitchOn, setIsSwitchOn] = React.useState<Switch>(false);
     const [logout, SetLogout] = React.useState<Switch>(false);
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-    
+    const {profile} = useAppSelector((state)=>state.cart.auth.value)
     const dispatch = useAppDispatch();
    
 
@@ -34,8 +34,8 @@ export default function DrawerContent() {
             <View>
                 <View style={{flexDirection:'row',margin:'5%',justifyContent:'space-between',alignItems:'center'}}>
                     <View>
-                        <Text style={styles.nameStyle}>sahadwg</Text>
-                        <Text style={styles.mailStyle}>sahadwg@gmail.com</Text>
+                        <Text style={styles.nameStyle}>{profile?.first_name}</Text>
+                        <Text style={styles.mailStyle}>{profile?.email}</Text>
                     </View>
                     <Pressable onPress={()=>SetLogout(!logout)}>
                     <Material name={logout?'arrow-up-drop-circle':'arrow-down-drop-circle'}  size={height*0.03} color={'lightgray'} />

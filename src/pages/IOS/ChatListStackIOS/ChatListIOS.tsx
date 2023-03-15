@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, Dimensions, TouchableOpacity, Platform } from 'react-native'
 import React from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import ChatIOS from '../../../components/IOS/ChatListIOS/ChatIOS';
@@ -18,12 +18,13 @@ const ChatListIOS = () => {
 
       
       <ChatIOS height={height} width={width} />
-      <View  style={{backgroundColor:colors.zBlue,height:height*0.06,width:height*0.06,borderRadius:height,position:'absolute',alignItems:'center',justifyContent:'center',top:'96%',left:'80%'}}>
-      <TouchableOpacity onPress={()=>navigation.navigate('StartChat')}>
-        <Material name='square-edit-outline' size={height*0.028}  color={'white'} />
-      </TouchableOpacity>
-
-      </View>
+      {Platform.OS==='ios' &&
+          <View  style={{backgroundColor:colors.zBlue,height:height*0.06,width:height*0.06,borderRadius:height,position:'absolute',alignItems:'center',justifyContent:'center',top:'96%',left:'80%'}}>
+            <TouchableOpacity onPress={()=>navigation.navigate('StartChat')}>
+            <Material name='square-edit-outline' size={height*0.028}  color={'white'} />
+          </TouchableOpacity>
+        </View>
+       }
 
 
       

@@ -23,14 +23,23 @@ const ChannelListAndroidMenuHeader:FC<AppProps> = ({height,width}) => {
   return (
     <View style={{height:height*0.08,backgroundColor:colors.zBlue,width:width,alignItems:'center',flexDirection:'row'}}>
         <StatusBar  barStyle={'default'} backgroundColor={colors.zBlue} />
-        <TouchableOpacity onPress={()=>navigation.goBack()}>
-            <Antd name='arrowleft' color={'white'} size={height*0.03}  style={{marginLeft:width*0.06}}/>
-        </TouchableOpacity>
-        
-        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',width:width*0.85}}>
-          <Text style={{color:'white',fontSize:height*0.023,marginLeft:width*0.07}}>Channels</Text>
-          <Antd name='search1' color={'white'} size={height*0.025} style={{marginRight:'5%'}}  />
+
+        <View style={{flexDirection:'row',justifyContent:'space-between',width:width,}}>
+
+            <View style={{flexDirection:'row',marginLeft:'5%'}}>
+              <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginLeft:'10%'}}>
+                  <Antd name='arrowleft' color={'white'} size={height*0.03}  />
+              </TouchableOpacity>
+          
+              <Text style={{color:'white',fontSize:height*0.023,marginLeft:'5%'}}>Channels</Text>
+            </View>
+
+            <View style={{marginRight:'5%'}}>
+              <Antd name='search1' color={'white'} size={height*0.025}   />
+            </View>
+            
         </View>
+
     </View>
   )
 }

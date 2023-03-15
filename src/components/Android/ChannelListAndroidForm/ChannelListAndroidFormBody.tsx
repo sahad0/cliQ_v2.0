@@ -9,9 +9,9 @@ import Form1 from './Forms/Form1';
 import { height, width } from '../../../utils/Dimension';
 import Form2 from './Forms/Form2';
 import Form3 from './Forms/Form3';
-import { Selected } from '../../../pages/CommonPages/CreateChannelStack/AddParticipants';
 import { Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { Selected } from '../../../pages/Android/ChannelListStackAndroid/AddParticipantsAndroid';
 
 
 type AppProps = {
@@ -68,8 +68,8 @@ const ChannelListAndroidFormBody:FC<AppProps> = ({organizationId}):JSX.Element =
         }
 
         <View style={{height:participants_list.length>0? height*0.18 : height*0.07,backgroundColor:'white',borderRadius:height*0.01,margin:height*0.02,elevation:2,marginTop:0}}>
-        <TouchableOpacity  style={{margin:height*0.02,marginTop:0,marginBottom:0,height:height*0.07,flexDirection:'row',borderRadius:height*0.01,backgroundColor:'white',alignItems:'center',justifyContent:'space-between',}}>
-        {/* onPress={()=>navigation.navigate('AddParticipants',{organization_id:organizationId})} */}
+        <TouchableOpacity  onPress={()=>navigation.navigate('AddParticipants',{organization_id:organizationId})} style={{margin:height*0.02,marginTop:0,marginBottom:0,height:height*0.07,flexDirection:'row',borderRadius:height*0.01,backgroundColor:'white',alignItems:'center',justifyContent:'space-between',}}>
+       
             <Text style={{color:'black',fontSize:height*0.017}}>Add Participants</Text>
             <Ionicons name='person-add' color={colors.zBlue} size={height*0.024}  />
 

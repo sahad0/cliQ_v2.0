@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Dimensions, ImageSourcePropType, ListRenderItem, Image, FlatList, TouchableOpacity, RefreshControl, Pressable } from 'react-native'
+import { View, Text, SafeAreaView, Dimensions, ImageSourcePropType, ListRenderItem, Image, FlatList, TouchableOpacity, RefreshControl, Pressable, Platform } from 'react-native'
 import React, { Dispatch, FC, memo, SetStateAction, useEffect, useRef, useState } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -34,9 +34,9 @@ const ListHeader:FC<HeaderProp> = ({setShowEdit,showEdit}):JSX.Element =>{
   
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'PinsIOS'>>();
   return(
-    <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.02,}}>
+    <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.02}}>
       <TouchableOpacity onPress={()=>navigation.goBack()}>
-        <Ion name='ios-close' size={height*0.03} color={colors.secondary} />
+        <Ion name={Platform.OS==='ios'?'ios-close':'arrow-back'} size={height*0.03} color={colors.secondary} />
       </TouchableOpacity>
       <Text style={{color:colors.secondary,fontSize:height*0.024,fontWeight:'600'}}>My Pins</Text>
       <Pressable onPress={()=>{setShowEdit(!showEdit)}}>
@@ -69,7 +69,7 @@ const RenderItem:FC<Render> = memo(({item,showEdit})=>{
       <>
         <Image source={item.imgUrl} style={{height:height*0.08,width:height*0.08,borderRadius:height,}} />
        { showEdit&& 
-       <View style={{height:height*0.018,width:height*0.018,position:'absolute',left:'60%',borderRadius:height,backgroundColor:colors.zBlack,borderWidth:1,}}>
+       <View style={{height:height*0.018,width:height*0.018,position:'absolute',left:'60%',borderRadius:height,backgroundColor:colors.zBlack,borderWidth:1,borderColor:colors.zBlack}}>
           <Antd name='minuscircle' size={height*0.015} color={colors.zRed} />
         </View>}
       </>

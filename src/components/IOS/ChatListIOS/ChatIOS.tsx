@@ -1,4 +1,4 @@
-import { View, Text, Image, ListRenderItem, ImageSourcePropType, FlatList, Pressable } from 'react-native'
+import { View, Text, Image, ListRenderItem, ImageSourcePropType, FlatList, Pressable, Platform } from 'react-native'
 import React, { FC, memo } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import ChatListIOSHeader from './ChatListIOSHeader';
@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 import { height, width } from '../../../utils/Dimension';
+import ChatListAndroidHeader from '../../../pages/Android/ChatListStackAndroid/ChatListAndroidHeader';
+import { StyleSheet } from 'react-native';
 
 type AppProps = {
     height:number,
@@ -135,8 +137,11 @@ const ChatIOS:FC<AppProps> = ({height,width}):JSX.Element => {
 
   return (
     <>
-        <ChatListIOSHeader height={height} width={width} />
-        <FlatList onScroll={(e)=>{
+        {
+            Platform.OS==='ios' ? (  <ChatListIOSHeader height={height} width={width} />) : <ChatListAndroidHeader />
+        }
+      
+        <FlatList style={Platform.OS==='android'?styles.androidFlatStyle:styles.iosFlatStyle} onScroll={(e)=>{
         if(e.nativeEvent.contentOffset.y<-10){
             navigation.navigate('Search');
         }
@@ -146,3 +151,13 @@ const ChatIOS:FC<AppProps> = ({height,width}):JSX.Element => {
 }
 
 export default ChatIOS;
+
+const styles= StyleSheet.create({
+    androidFlatStyle:{
+        marginTop:'8%'
+    },
+    iosFlatStyle:{
+        marginTop:0,
+    }
+    
+})

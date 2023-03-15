@@ -12,6 +12,8 @@ export const AndroidColors: Colors= {
         zLgray:'#212121',
         zGray:'#6b6b6b',
         zBlue:'#4990e2',
+        zBlack:'#ffffff',
+        zRed:'rgb(255,69,58)',
 
         
     }

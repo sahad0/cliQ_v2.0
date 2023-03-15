@@ -5,7 +5,6 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { DrawerStackParams } from '../../../router/AndroidNavigators/DrawerNavigators';
 import { Pressable } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { AndroidColors } from '../../../utils/Colors';
 import { height } from '../../../utils/Dimension';
 
 

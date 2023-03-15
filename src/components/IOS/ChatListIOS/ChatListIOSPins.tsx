@@ -5,6 +5,8 @@ import { useAppSelector } from '../../../Hooks/hooks';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
+import { AndroidStackParams } from '../../../router/AndroidNavigators/AndroidStackNav';
+import { Platform } from 'react-native';
 
 type AppProps = {
     height:number,
@@ -54,9 +56,17 @@ const data = [
 const ChatListIOSPins:FC<AppProps> = ({height,width}):JSX.Element => {
   const {colors} = useAppSelector((state)=>state.cart.color.value);
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
+  const navigation1 = useNavigation<StackNavigationProp<AndroidStackParams,'TabNavigators'>>();
+
 
   const openPins = ()=>{
-    navigation.navigate('PinsIOS',{data:data});
+    if(Platform.OS==='ios'){
+      navigation.navigate('PinsIOS',{data:data});
+
+    }
+    else{
+      navigation1.navigate('Pins',{data:data});
+    }
   }
 
   return (

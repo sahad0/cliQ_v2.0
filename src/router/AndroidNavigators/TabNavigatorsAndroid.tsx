@@ -8,6 +8,7 @@ import CHatList from '../../components/Android/ChatListStackAndroid/CHatList'
 import ChannelList from '../../components/Android/ChannelListStackAnroid/ChannelList'
 import ChannelListAndroid from '../../pages/Android/ChannelListStackAndroid/ChannelListAndroid'
 import { useAppSelector } from '../../Hooks/hooks'
+import ChatListAndroid from '../../pages/Android/ChatListStackAndroid/ChatListAndroid'
 
 
 export type TabStackParams ={
@@ -42,7 +43,7 @@ export default function TabNavigators():JSX.Element {
             },
           }} />
 
-        <Tab.Screen name="ChatList" component={CHatList} options={{
+        <Tab.Screen name="ChatList" component={ChatListAndroid} options={{
            tabBarLabel:()=>null,
             
             tabBarIcon: ({size,focused,color}) => {
