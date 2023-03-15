@@ -11,38 +11,7 @@ type AppProps = {
 
 
 const ChannelListAndroid:FC<AppProps> = ():JSX.Element => {
-    const data = [
-        {
-          id:'1',
-          imgUrl :require('../../../assets/images/player/p6.png'),
-          name:'#Astro_CLub',
-          memberCount:20,
-        },
-        {
-          id:'2',
-          imgUrl :require('../../../assets/images/player/p6.png'),
-          name:'#Astro_CLub',
-          memberCount:20,
-        },
-        {
-          id:'3',
-          imgUrl :require('../../../assets/images/player/p7.png'),
-          name:'#Astro_CLub',
-          memberCount:20,
-        },
-        {
-          id:'4',
-          imgUrl :require('../../../assets/images/player/p8.png'),
-          name:'#Astro_CLub',
-          memberCount:20,
-        },
-        {
-          id:'5',
-          imgUrl :require('../../../assets/images/player/p9.png'),
-          name:'#Astro_CLub',
-          memberCount:20,
-        }
-      ]
+
     
     
     
@@ -52,9 +21,7 @@ const ChannelListAndroid:FC<AppProps> = ():JSX.Element => {
     
               <ChatListAndroidHeader />
               <ChannelListIOS />
-              {/* <CreateChannelDetailsBody height={height} width={width} data={data} />
-    
-              <CreateChannelDetailIcon height={height} width={width}  /> */}
+          
         </SafeAreaView>
       )
 }

@@ -5,7 +5,6 @@ import axios, { AxiosResponse } from 'axios';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { logoutController } from '../../store/store';
 import DrawerContent from '../../Extra/DrawerContent';
-import { width } from '../../utils/Metrics';
 
 
 export type DrawerStackParams ={
@@ -23,7 +22,7 @@ const DrawerNavigators = ():JSX.Element => {
 
   return (
    
-    <Drawer.Navigator useLegacyImplementation={false}   drawerContent={DrawerContent} screenOptions={{headerShown:false,drawerStyle:{width:width(295)}}}>
+    <Drawer.Navigator useLegacyImplementation={false}   drawerContent={DrawerContent} screenOptions={{headerShown:false,drawerStyle:{width:'80%'}}}>
         
         <Drawer.Screen name="CreateChannelStackNav" component={CreateChannelStackNav} /> 
 
