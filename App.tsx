@@ -10,6 +10,7 @@ import {persistReducer,persistStore} from 'redux-persist';
 import cartReducer from './src/store/store';
 import channelParticipantReducer from './src/store/participantsStore';
 import colorReducer from './src/store/colorStore';
+import messageReducer from './src/store/messageStore';
 import axios from 'axios';
 
 
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   auth : cartReducer,
   channelParticipant : channelParticipantReducer,
   color: colorReducer,
+  message:messageReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

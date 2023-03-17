@@ -74,8 +74,8 @@ const ChatListIOSPins:FC<AppProps> = ({height,width}):JSX.Element => {
 
       <View style={{flexDirection:'row',justifyContent:'space-between',margin:height*0.018,marginTop:0,alignItems:'center'}}>
             <Text style={{color:colors.secondary,fontSize:height*0.02,fontWeight:'600'}}>My Pins</Text>
-            <TouchableOpacity onPress={openPins}>
-              <Antd name='right' size={height*0.015} color={colors.zGray} />
+            <TouchableOpacity onPress={openPins} style={{padding:'2%'}}>
+              <Antd name='right' size={height*0.018} color={colors.zGray} />
             </TouchableOpacity>
       </View>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal >

@@ -4,11 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicon from 'react-native-vector-icons/Ionicons'
 import Material from 'react-native-vector-icons/MaterialCommunityIcons'
 import CallList from '../../components/Android/CallListStackAndroid/CallList'
-import CHatList from '../../components/Android/ChatListStackAndroid/CHatList'
-import ChannelList from '../../components/Android/ChannelListStackAnroid/ChannelList'
 import ChannelListAndroid from '../../pages/Android/ChannelListStackAndroid/ChannelListAndroid'
 import { useAppSelector } from '../../Hooks/hooks'
-import ChatListAndroid from '../../pages/Android/ChatListStackAndroid/ChatListAndroid'
+import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS'
 
 
 export type TabStackParams ={
@@ -43,7 +41,7 @@ export default function TabNavigators():JSX.Element {
             },
           }} />
 
-        <Tab.Screen name="ChatList" component={ChatListAndroid} options={{
+        <Tab.Screen name="ChatList" component={ChatListIOS} options={{
            tabBarLabel:()=>null,
             
             tabBarIcon: ({size,focused,color}) => {

@@ -1,6 +1,6 @@
-import { View, Text, KeyboardAvoidingView, FlatList, ListRenderItem, ImageSourcePropType, Image, TextInput, Platform, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { FC, memo } from 'react'
-import { useAppSelector } from '../../../Hooks/hooks';
+import { View, Text, KeyboardAvoidingView, FlatList, ListRenderItem, ImageSourcePropType, Image, TextInput, Platform, StyleSheet, TouchableOpacity, Keyboard } from 'react-native'
+import React, { FC, memo, useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
 import moment from 'moment';
 import Ion from 'react-native-vector-icons/Ionicons'
 import Antd from 'react-native-vector-icons/AntDesign'
@@ -8,6 +8,7 @@ import FontAws from 'react-native-vector-icons/FontAwesome'
 import { height,width } from '../../../utils/Dimension';
 import { IosColors } from '../../../utils/Colors';
 import { Pressable } from 'react-native';
+import { txtMsgController } from '../../../store/messageStore';
 
 type AppProps = {
     height:number,
@@ -219,20 +220,40 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,}):JSX.Element => {
     const keyExtractor = (item:RenderType):string => item.id;
 
     const {colors} = useAppSelector((state)=>state.cart.color.value);
+    const {message} = useAppSelector((state)=>state.cart.message.value);
+
+    const dispatch = useAppDispatch();
+
+
+    // useEffect(()=>{
+    //     console.log(message);
+    // },[message]);
+
+    const sendText = ()=>{
+        
+    }
+
+
+
+
+
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{flex:1}}>
+        <View style={{flex:1,}}>
             <FlatList data={data} inverted={true} renderItem={renderItem} keyExtractor={keyExtractor}  />
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+
             <View style={{backgroundColor:colors.zLgray,height:height*0.055,width:width*0.96,alignSelf:'center',borderRadius:height*0.04,flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:height*0.01}}>
                 <Pressable>
                     <Antd name='pluscircle' color={colors.zGray} size={height*0.04} style={{marginLeft:height*0.01}} />
                 </Pressable>
-                <TextInput placeholderTextColor={colors.placeholderColor} placeholder='Type your message here..' style={{height:height*0.05,width:width*0.7,color:colors.secondary,fontSize:height*0.018}}/>
-                <TouchableOpacity style={{height:width*0.09,width:width*0.09,backgroundColor:colors.zBlue,borderRadius:height,marginRight:height*0.01,justifyContent:'center',alignItems:'center'}}>
+                <TextInput onChangeText={(e)=>dispatch(txtMsgController(e))} placeholderTextColor={colors.placeholderColor} placeholder='Type your message here..' style={{height:height*0.05,width:width*0.7,color:'white',fontSize:height*0.018}}/>
+                <TouchableOpacity onPress={sendText} style={{height:height*0.04,width:height*0.04,backgroundColor:colors.zBlue,borderRadius:height,marginRight:height*0.01,justifyContent:'center',alignItems:'center'}}>
                     <FontAws name='send' color={colors.secondary} size={height*0.02}  />
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
+        </View>
     )
 }
 

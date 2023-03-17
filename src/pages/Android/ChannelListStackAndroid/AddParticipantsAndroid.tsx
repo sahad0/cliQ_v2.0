@@ -38,8 +38,10 @@ const [eventReducer,setEventReducer] = useReducer(requestStatus,initial_state);
 
 
 
-console.log(participants_list)
+// useEffect(()=>{
+//   console.log(participants_list);
 
+// },[participants_list]);
 
 
 useEffect(()=>{
@@ -53,6 +55,7 @@ const fetchMembers = async ():Promise<void> => {
     if(organization_id && profile!==null){
       const y = participants_list.map((k)=>k.id);
       const {members} = (await axios('/organization/members',{method:'POST',timeout:5000,data:{organization_id:organization_id,excludeMembers:[profile.user_id,...y]}})).data;
+      console.log(members)
       setMembers(members);
       
 

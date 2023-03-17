@@ -16,7 +16,7 @@ const ChannelListIOS = ():JSX.Element => {
     const navigationAndroid = useNavigation<NativeStackNavigationProp<AndroidStackParams,'TabNavigators'>>();
 
   return (
-    <SafeAreaView style={{flex:1,backgroundColor:colors.zBlack}}>
+    <SafeAreaView style={{flex:1,backgroundColor:colors.zBlack,marginTop:'5%'}}>
       
       {Platform.OS==='ios' &&  <ChatListIOSHeader height={height} width={width} />}
       <PersonalChannelList height={height} width={width} />
@@ -27,7 +27,7 @@ const ChannelListIOS = ():JSX.Element => {
           </TouchableOpacity>
         </View>
         :
-        <TouchableOpacity  onPress={()=> navigationAndroid.navigate('ChannelMenu')}  style={{elevation:5,backgroundColor:AndroidColors.colors.zBlue,height:height*0.06,width:height*0.06,borderRadius:height,position:'absolute',alignItems:'center',justifyContent:'center',top:'88%',left:'80%'}}>
+        <TouchableOpacity  onPress={()=> navigationAndroid.navigate('ChannelMenu')}  style={{elevation:5,backgroundColor:AndroidColors.colors.zBlue,height:height*0.06,width:height*0.06,borderRadius:height,position:'absolute',alignItems:'center',justifyContent:'center',top:'88%',left:'81%'}}>
           <Text style={{color:colors.primary,fontSize:height*0.024}}>#</Text>
       </TouchableOpacity>
       }

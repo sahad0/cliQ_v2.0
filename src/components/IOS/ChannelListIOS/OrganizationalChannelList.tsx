@@ -63,7 +63,7 @@ const HeaderComp = ()=>{
   const {colors} = useAppSelector((state)=>state.cart.color.value);
 
   return(
-    <View style={{flexDirection:'row',alignItems:'center',marginTop:height*0.02}}>
+    <View style={{flexDirection:'row',alignItems:'center',marginTop:'4%'}}>
         <Material name='organization' color={colors.zBlue} size={height*0.024} />
         <Text style={{color:colors.zBlue,fontSize:height*0.018,marginLeft:height*0.01,fontWeight:'600'}}>Organization</Text>
     </View>

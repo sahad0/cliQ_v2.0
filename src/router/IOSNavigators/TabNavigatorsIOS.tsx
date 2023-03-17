@@ -2,14 +2,12 @@ import { View, Text, Dimensions, Image } from 'react-native'
 import React, { useEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CallList from '../../pages/CommonPages/CallListStack/CallList';
-import ChatList from '../../pages/CommonPages/ChatListStack/ChatList';
-import ChannelDetails from '../../pages/CommonPages/CreateChannelStack/ChannelDetails';
+
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import FontAws from 'react-native-vector-icons/FontAwesome5';
 import Antd from 'react-native-vector-icons/AntDesign';
 import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import ChatListIOS from '../../pages/IOS/ChatListStackIOS/ChatListIOS';
-import axios from 'axios';
 import { height, width } from '../../utils/Dimension';
 import ChannelListIOS from '../../pages/IOS/ChannelListStackIOS/ChannelListIOS';
 
@@ -68,7 +66,7 @@ export default function TabNavigatorsIOS():JSX.Element {
           },
           
         }} />
-          <Tab.Screen name="CallList" component={ChatList} options={{
+          <Tab.Screen name="CallList" component={ChatListIOS} options={{
               tabBarLabel:()=>null,
                 tabBarIcon: ({size,focused,color}) => {
                   return (
@@ -80,7 +78,7 @@ export default function TabNavigatorsIOS():JSX.Element {
                 },
               }} />
 
-        <Tab.Screen name="ExtrasList" component={ChannelDetails} options={{
+        <Tab.Screen name="ExtrasList" component={ChannelListIOS} options={{
           tabBarLabel:()=>null,
           
           tabBarIcon: ({size,focused,color}) => {
@@ -95,7 +93,7 @@ export default function TabNavigatorsIOS():JSX.Element {
             },
           }} />
 
-          <Tab.Screen name="CalanderList" component={ChatList} options={{
+          <Tab.Screen name="CalanderList" component={ChannelListIOS} options={{
              tabBarLabel:()=>null,
               
               tabBarIcon: ({size,focused,color}) => {

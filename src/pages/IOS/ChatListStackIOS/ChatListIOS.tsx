@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, Dimensions, TouchableOpacity, Platform } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import ChatIOS from '../../../components/IOS/ChatListIOS/ChatIOS';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -8,9 +8,21 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 import { height, width } from '../../../utils/Dimension';
 
+
+
+
+
+
+
 const ChatListIOS = () => {
   const {colors} = useAppSelector((state)=>state.cart.color.value);
+
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
+
+
+
+
+
   
 
   return (

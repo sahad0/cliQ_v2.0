@@ -83,7 +83,7 @@ const PersonalChannelList:FC<AppProps> = ({height,width}):JSX.Element => {
 
 
   return (
-    <FlatList showsVerticalScrollIndicator={false}  ListHeaderComponent={HeaderComp} data={data} renderItem={renderItem} keyExtractor={keyExtractor} style={{flex:1,margin:'5%',marginBottom:0,}} />
+    <FlatList showsVerticalScrollIndicator={false}  ListHeaderComponent={HeaderComp} data={data} renderItem={renderItem} keyExtractor={keyExtractor} style={{flex:1,margin:'5%',marginBottom:0,marginTop:'2%'}} />
   )
 }
 
