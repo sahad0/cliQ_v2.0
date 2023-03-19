@@ -79,7 +79,7 @@ type checkMail = boolean;
         visible ? 
         <>
           <View style={{flexDirection:'row',margin:height*0.03}}>
-            <Text style={{fontFamily:Fonts.regular,color:'gray',fontSize:height*0.018,}}>{user.email}</Text>
+            <Text numberOfLines={1} ellipsizeMode='tail' style={{fontFamily:Fonts.regular,color:'gray',fontSize:height*0.018,width:width*0.65}}>{user.email}</Text>
             <TouchableOpacity style={{marginLeft:height*0.02}} onPress={()=>setVisible(false)}>
               <Text style={{fontFamily:Fonts.regular,color:'#159AFF',fontSize:height*0.017}}>Change</Text>
             </TouchableOpacity>
@@ -96,7 +96,7 @@ type checkMail = boolean;
             {({ handleChange, handleBlur, handleSubmit,values ,errors }:FormikProps<FormikValues>) => (
               
                 <>
-                  <TextInput placeholderTextColor={'gray'}  onChangeText={handleChange('email')} value={values.email} onFocus={()=>setFocus(true)}  onBlur={()=>{handleBlur('email'),setFocus(false)}} placeholder={"Email *"} style={{paddingLeft:height*0.01,paddingBottom:height*0.02,color:colors.secondary,fontFamily:Fonts.regular,width:width*0.9,alignSelf:'center',borderBottomColor:focus ? colors.primaryText: 'lightgray',borderBottomWidth:1,fontSize:height*0.018}} />
+                  <TextInput keyboardType='email-address' placeholderTextColor={'gray'}  onChangeText={handleChange('email')} value={values.email} onFocus={()=>setFocus(true)}  onBlur={()=>{handleBlur('email'),setFocus(false)}} placeholder={"Email *"} style={{paddingLeft:height*0.01,paddingBottom:height*0.02,color:colors.secondary,fontFamily:Fonts.regular,width:width*0.9,alignSelf:'center',borderBottomColor:focus ? colors.primaryText: 'lightgray',borderBottomWidth:1,fontSize:height*0.018}} />
                   {(errors.email) &&  <><Text style={{fontSize:height*0.015,color:'red',fontFamily:Fonts.regular,margin:height*0.06,marginLeft:height*0.03,marginBottom:height*0.01}}>
                     {errors.email.toString()}
                   </Text></>}

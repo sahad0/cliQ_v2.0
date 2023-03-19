@@ -38,11 +38,6 @@ const [eventReducer,setEventReducer] = useReducer(requestStatus,initial_state);
 
 
 
-// useEffect(()=>{
-//   console.log(participants_list);
-
-// },[participants_list]);
-
 
 useEffect(()=>{
   fetchMembers();

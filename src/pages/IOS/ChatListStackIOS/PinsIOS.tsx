@@ -100,11 +100,6 @@ const PinsIOS = ():JSX.Element => {
   const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'PinsIOS'>>();
   const [showEdit,setShowEdit] = useState<ShowType>(false);
   const ref = useRef();
-  // const [handle,setHandle] = useState(true);
-
-  // useEffect(()=>{
-  //   console.log(handle)
-  // },[handle]);
 
 
   return (

@@ -24,7 +24,7 @@ const DrawerNavigators = ():JSX.Element => {
    
     <Drawer.Navigator useLegacyImplementation={false}   drawerContent={DrawerContent} screenOptions={{headerShown:false,drawerStyle:{width:'80%'}}}>
         
-        <Drawer.Screen name="AndroidStackNav" component={AndroidStackNav} /> 
+        <Drawer.Screen name="AndroidStackNav"  component={AndroidStackNav} /> 
 
 
     </Drawer.Navigator> 

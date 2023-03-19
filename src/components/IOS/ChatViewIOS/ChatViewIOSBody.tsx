@@ -9,6 +9,7 @@ import { height,width } from '../../../utils/Dimension';
 import { IosColors } from '../../../utils/Colors';
 import { Pressable } from 'react-native';
 import { txtMsgController } from '../../../store/messageStore';
+import { SocketContext } from '../../../context/SocketContext';
 
 type AppProps = {
     height:number,
@@ -220,17 +221,25 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,}):JSX.Element => {
     const keyExtractor = (item:RenderType):string => item.id;
 
     const {colors} = useAppSelector((state)=>state.cart.color.value);
+    const {profile} = useAppSelector((state)=>state.cart.auth.value);
+
     const {message} = useAppSelector((state)=>state.cart.message.value);
+    const { socket } = React.useContext(SocketContext);
+
 
     const dispatch = useAppDispatch();
 
 
-    // useEffect(()=>{
-    //     console.log(message);
-    // },[message]);
-
     const sendText = ()=>{
-        
+        // socket?.emit('',
+        // {
+
+        //     organization_id: JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id,
+        //     is_private: url.get("channel") === null ? true : false,
+        //     chat_id: url.get("channel") === null ? url.get("chat") : url.get("channel"),
+        //     content: message.replace(/^\s+|\s+$/g, ''),
+        //     reply_to: replyTo === "" ? "" : replyTo._id
+        // })
     }
 
 

@@ -6,15 +6,16 @@ import ChannelMenuAndroid from '../../pages/Android/ChannelListStackAndroid/Chan
 import ChannelFormAndroid from '../../pages/Android/ChannelListStackAndroid/ChannelFormAndroid';
 import AddParticipants from '../../pages/Android/ChannelListStackAndroid/AddParticipantsAndroid';
 import PinsIOS from '../../pages/IOS/ChatListStackIOS/PinsIOS';
-
 import ChatViewIOS from '../../pages/IOS/ChatListStackIOS/ChatViewIOS';
 import { Socket, io } from 'socket.io-client';
 import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import { messageController } from '../../store/messageStore';
+import { SocketProvider } from '../../context/SocketContext';
 
-type SocketType = {
-  getSocket?:()=>object | undefined
-}
+
+// type SocketType = {
+//   getSocket?:()=>object | undefined
+// }
 
 export  type AndroidStackParams = {
   TabNavigators:undefined,
@@ -24,7 +25,7 @@ export  type AndroidStackParams = {
   Pins:{
     data : {id:string,imgUrl:ImageSourcePropType,name:string}[]
   },
-  Chat:Partial<{data:{id:string,name:string,}}> & SocketType,
+  Chat:Partial<{data:{id:string,name:string,}}> ,
 
 
   
@@ -45,76 +46,27 @@ const AndroidStackNav = () => {
   const getSocket = ()=>socket;  
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    initSocket();
-  }, [])
 
 
-  const initSocket = () => {
-    console.log("socket testing");
-    const socket = io('https://prezz.live/', {
-      path: "/api/socket.io",
-      secure: true,
-      query: { "token": token },
-      'transports': ['websocket', 'polling'],
-    });
-    socket.on("connect", () => {
-      setSocket(socket);
-      console.log(socket.id)
-
-    });
-
-    socket.on("send-message", (data) => {
-      console.log("send message.........", data, profile?.user_id);
-      if (data.sender.user_id === profile?.user_id || data.chat_id === profile?.user_id+":"+chatId || data.sender.user_id ===  profile?.user_id+":"+chatId) {
-          console.log("receiving message/.....", data)
-          dispatch(messageController({textMsg}));
-      }
-      // console.log(data.sender.user_id, "!==", localStorage.getItem("!@#$%^&*(user_id)*&^%$#@!"), " &&", data.chat_id, "!== ", localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("))
-      // if (data.sender.user_id !== localStorage.getItem("!@#$%^&*(user_id)*&^%$#@!") && data.chat_id !== localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(")) {
-      //     console.log("send unread count", unreadCount);
-      //     const notifyToken = localStorage.getItem("$%^&*(*&^%$#@#$%^&*()n(*(*otify(*&&*(t(*&*(oken)(*&^&*(")
-      //     // if (notifyToken)
-      //     //     sendNotification(socket, data._id, notifyToken);
-      //     // setUnreadCount(unreadCount => {
-      //     //     unreadCount[data.chat_id] = unreadCount[data.chat_id] ? unreadCount[data.chat_id] + 1 : 1;
-      //     //     return { ...unreadCount }
-      //     // })
-      })
-    
-   
-
-    return () => {
-        socket.close();
-    }
-
-    // socket.on("fetch-messages", (data) => {
-    //   console.log("fetching messages...", data);
-    //   setNewMsg(!data.isReload);
-    //   data.isReload ? setMessages((messages) => [...data.messages, ...messages]) : setMessages(data.messages);
-    //   setReload(true);
-    //   setFinishState(data.isFinished);
-
-    // })
-  }
-
-
+  
 
 
   return (
-   <Stack.Navigator  screenOptions={{headerShown:false,}}  initialRouteName={'TabNavigators'} >
+    <SocketProvider>
+      <Stack.Navigator  screenOptions={{headerShown:false,}}  initialRouteName={'TabNavigators'} >
 
-        <Stack.Screen  options={{animation:'fade_from_bottom'}} name='TabNavigators' component={TabNavigatorsAndroid} />
-        <Stack.Screen  options={{animation:'slide_from_right'}} name='ChannelMenu' component={ChannelMenuAndroid} />
-        <Stack.Screen  options={{animation:'slide_from_right'}} name='ChannelForm' component={ChannelFormAndroid} />
-        <Stack.Screen  options={{animation:'slide_from_right'}} name='AddParticipants' component={AddParticipants} />
-        <Stack.Screen  options={{animation:'slide_from_right'}} name='Pins' component={PinsIOS} />
-        <Stack.Screen  options={{animation:'slide_from_right'}} name='Chat' component={ChatViewIOS} initialParams={{getSocket}} />
+          <Stack.Screen  options={{animation:'fade_from_bottom'}} name='TabNavigators' component={TabNavigatorsAndroid} />
+          <Stack.Screen  options={{animation:'slide_from_right'}} name='ChannelMenu' component={ChannelMenuAndroid} />
+          <Stack.Screen  options={{animation:'slide_from_right'}} name='ChannelForm' component={ChannelFormAndroid} />
+          <Stack.Screen  options={{animation:'slide_from_right'}} name='AddParticipants' component={AddParticipants} />
+          <Stack.Screen  options={{animation:'slide_from_right'}} name='Pins' component={PinsIOS} />
+          <Stack.Screen  options={{animation:'slide_from_right'}} name='Chat' component={ChatViewIOS} />
 
 
 
 
-    </Stack.Navigator>
+      </Stack.Navigator>
+    </SocketProvider>
   )
 }
 

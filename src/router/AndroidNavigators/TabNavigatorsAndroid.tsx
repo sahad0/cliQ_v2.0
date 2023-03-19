@@ -24,9 +24,10 @@ export default function TabNavigators():JSX.Element {
 
   const {colors} = useAppSelector((state)=>state.cart.color.value)
   return (
-    <Tab.Navigator  initialRouteName='ChatList' screenOptions={{headerShown:false,tabBarStyle:{height:height*0.08,elevation:3},headerTitleStyle:{margin:30} }}>
+    <Tab.Navigator  initialRouteName='ChatList'  screenOptions={{headerShown:false,tabBarStyle:{height:height*0.08,elevation:3},headerTitleStyle:{margin:30} }}>
          
-         <Tab.Screen name="CallList" component={CallList} options={{
+         <Tab.Screen name="CallList"  component={CallList} options={{
+          
             tabBarLabel:()=>null,
             
             tabBarIcon: ({size,focused,color}) => {

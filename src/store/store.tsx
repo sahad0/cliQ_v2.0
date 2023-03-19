@@ -1,7 +1,7 @@
 
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface StoreValue extends UserType,Profile {
+interface StoreValue extends UserType,Profile,Status,OrgId {
     token: string,
 }
 type UserType = {
@@ -11,6 +11,15 @@ type StatusType =  "AVAILABLE"|"BUSY"|"AWAY"|"INVISIBLE"
 type Status = {
     status: StatusType
 }
+
+type OrgId = {
+    orgId:string|null,
+
+}
+interface UserTypeController extends OrgId,UserType{
+
+}
+
 
 type Profile ={
     profile:{
@@ -44,7 +53,9 @@ const val:StoreValue = {
             status: "AVAILABLE", 
             timezone: "", 
             user_id: ""
-       }
+       },
+       orgId:null,
+       status:"AVAILABLE",
 }
 
 
@@ -59,13 +70,18 @@ const storeSlice = createSlice({
             state.value = {...state.value,token,orgNewUser,profile};
         },
         logoutController : (state) => {
-            const temp = {token:"",orgNewUser:false,profile:null}
-            state.value = temp;
+            state.value = {
+                orgId:null,
+                orgNewUser:null,
+                profile:null,
+                token:'',
+                status:'AVAILABLE'
+            };
 
         },
-        userTypeController : (state,action:PayloadAction<UserType>) => {
-            const {orgNewUser} = action.payload;
-            state.value = {...state.value,orgNewUser};
+        userTypeController : (state,action:PayloadAction<UserTypeController>) => {
+            const {orgNewUser,orgId} = action.payload;
+            state.value = {...state.value,orgNewUser,orgId};
         },
         statusController : (state,action:PayloadAction<Status>) => {
                 const {status} = action.payload;

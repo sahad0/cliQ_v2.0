@@ -37,10 +37,10 @@ const NameOrgBody:FC<AppProps> = ({height,width}):JSX.Element => {
         const val:Data = {name:values.orgName,is_discoverable:toggleCheckBox};
         try {
           setEventReducer({type: 'loading'});
-          const {data}  = await axios.post('/organization/create',val);
-          if(data){
+          const {organizations}  = (await axios.post('/organization/create',val)).data;
+          if(organizations){
             setEventReducer({type: 'success'});
-            dispatch(userTypeController({orgNewUser:false}));
+            dispatch(userTypeController({orgNewUser:false,orgId:organizations[0].id}));
           }
           else{
             setEventReducer({type: 'error'});

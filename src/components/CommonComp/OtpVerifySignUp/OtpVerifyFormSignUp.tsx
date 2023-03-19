@@ -71,7 +71,7 @@ type focusBool = true|false;
 
                   setError({set:false,message:''})
 
-                  dispatch(loginController({token:data.token,orgNewUser:true,profile:profile}));
+                  dispatch(loginController({token:data.token,orgNewUser:true,profile:profile,status:'AVAILABLE',orgId:null}));
                 }
               
                 setEventReducer({type:'success'});
@@ -97,7 +97,6 @@ type focusBool = true|false;
               const sentOtp = await axios.post('/auth/email-otp',{email:user.email});
           }
           catch(err){
-              console.log(err);
           }
       }
 

@@ -20,7 +20,6 @@ const ChannelFormAndroid = ():JSX.Element => {
         const {defaultOrg} = (await axios('/organization/default',{timeout: 5000,method: 'GET',})).data;
         setOrganizationId(defaultOrg);
       }catch(err){
-          console.log(err);
       }
     }
   

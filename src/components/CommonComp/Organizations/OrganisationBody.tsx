@@ -88,7 +88,6 @@ const OrganisationBody:FC<AppProps> = ({height,width}) => {
 
             }
         } catch (err:any) {
-            console.log(err.request.responseText);
         }
     }
 

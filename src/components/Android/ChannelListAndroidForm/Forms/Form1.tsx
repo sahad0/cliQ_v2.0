@@ -52,9 +52,7 @@ const Form1:FC<AppProps> = ({focus,setFocus}):JSX.Element => {
         
         
         if (response.didCancel) {
-          console.log('User cancelled image picker');
         } else if (response.errorCode) {
-          console.log('ImagePicker Error: ', response.errorCode);
         } else {
       
         if(response.assets){

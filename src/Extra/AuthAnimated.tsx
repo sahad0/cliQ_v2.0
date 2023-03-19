@@ -4,7 +4,7 @@ import Animated, { FadeInDown, } from 'react-native-reanimated';
 import { Formik, FormikProps, FormikValues } from 'formik';
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../Hooks/hooks';
-import { loginController } from '../store/store';
+import { loginController, logoutController } from '../store/store';
 import requestStatus, { initial_state } from '../utils/LoaderHandling';
 import { passwordSchema } from './YupSchema/Schema';
 import { Fonts } from '../utils/Fonts';
@@ -54,13 +54,9 @@ const AuthAnimated:FC<Props> = ({height,width,inputStr,btnStr,user,setUser}:Prop
                     }
                 })
                 const {profile} = ((await createHeader('/auth/profile',{timeout:5000,method:'GET'})).data);
-                const data1 = await createHeader.get('organization/user-organizations');
-                if(data1){
-                  const {organizations} = data1.data;
-                  const orgNewUser = organizations.length>0 ? false:true
-                  dispatch(loginController({token:data.token,orgNewUser:orgNewUser,profile:profile}));
-                  setEventReducer({type:'success'});
-                }
+                const {defaultOrg} = (await createHeader.get('organization/default')).data;
+                dispatch(loginController({token:data.token,orgNewUser:defaultOrg===null?true:false,profile:profile,orgId:defaultOrg!==null?defaultOrg:null,status:'AVAILABLE'}));
+                setEventReducer({type:'success'});
             }
             else{
             setEventReducer({type:'error'});
