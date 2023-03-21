@@ -19,7 +19,7 @@ export const SocketProvider = ({ children }:{children:ReactNode}) => {
 
 
   useEffect(() => {
-    const socket:Socket = io('https://prezz.live/', {
+    const socket:Socket = io('http://192.168.0.113:6969', {
     path: "/api/socket.io",
     secure: true,
     query: { "token": token },
@@ -36,11 +36,12 @@ export const SocketProvider = ({ children }:{children:ReactNode}) => {
   })
 
     socket.on("send-message", (data) => {
+      
       console.log("send message.........", data, profile?.user_id);
-      if (data.sender.user_id === profile?.user_id || data.chat_id.split(':')[1] === profile?.user_id) {
-          console.log("receiving message/.....", data);
-          // dispatch(messageController({textMsg}));
-      }
+      // if (data.sender.user_id === profile?.user_id || data.chat_id.split(':')[1] === profile?.user_id) {
+      //     console.log("receiving message/.....", data);
+      //     // dispatch(messageController({textMsg}));
+      // }
     })
   
  

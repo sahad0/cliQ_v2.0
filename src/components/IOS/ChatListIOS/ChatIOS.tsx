@@ -48,7 +48,6 @@ type Render = {
         const {colors} = useAppSelector((state)=>state.cart.color.value);
         const {profile} = useAppSelector((state)=>state.cart.auth.value);
        
-
         const dispatch = useAppDispatch();
         const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'TabNavigatorsIOS'>>();
         const navigation1 = useNavigation<StackNavigationProp<AndroidStackParams,'TabNavigators'>>();
@@ -67,7 +66,7 @@ type Render = {
 
         return(
         <>
-            <Pressable onPress={()=>{dispatch(chatIdController(profile?.user_id+':'+item.id)),redirectChat(item.id,item.name)}} style={Platform.OS==='ios'?styles.iosListStyle:styles.androidListStyle}>
+            <Pressable onPress={()=>{dispatch(chatIdController(item.id)),redirectChat(item.id,item.name)}} style={Platform.OS==='ios'?styles.iosListStyle:styles.androidListStyle}>
                 <View style={{width:'15%',}}>
                     {
                         item.imgUrl ? 

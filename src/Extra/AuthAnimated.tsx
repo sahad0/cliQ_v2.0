@@ -55,6 +55,7 @@ const AuthAnimated:FC<Props> = ({height,width,inputStr,btnStr,user,setUser}:Prop
                 })
                 const {profile} = ((await createHeader('/auth/profile',{timeout:5000,method:'GET'})).data);
                 const {defaultOrg} = (await createHeader.get('organization/default')).data;
+                
                 dispatch(loginController({token:data.token,orgNewUser:defaultOrg===null?true:false,profile:profile,orgId:defaultOrg!==null?defaultOrg:null,status:'AVAILABLE'}));
                 setEventReducer({type:'success'});
             }

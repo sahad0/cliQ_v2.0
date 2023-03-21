@@ -66,8 +66,8 @@ const storeSlice = createSlice({
     reducers: {
         loginController: (state, action:PayloadAction<StoreValue>) => {
              
-            const {token,orgNewUser,profile} = action.payload;
-            state.value = {...state.value,token,orgNewUser,profile};
+            const {token,orgNewUser,profile,orgId,status} = action.payload;
+            state.value = {...state.value,token,orgNewUser,profile,orgId,status};
         },
         logoutController : (state) => {
             state.value = {

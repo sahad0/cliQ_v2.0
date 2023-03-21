@@ -31,12 +31,6 @@ export default function Router():JSX.Element {
   const auth = token;
   const newUser = orgNewUser;
   axios.defaults.headers.common['Authorization'] = `Bearer ${auth}`;
-  const hello = useAppSelector((state)=>state.cart.auth.value);
-  
-
-  useEffect(()=>{
-    console.log(hello)
-  },[hello]);
 
   
 

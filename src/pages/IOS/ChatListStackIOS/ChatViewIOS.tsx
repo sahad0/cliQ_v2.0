@@ -17,18 +17,10 @@ const ChatViewIOS = ():JSX.Element => {
 
     const {params:{data:{id,name}}} = useRoute<RouteProp<AppStackIOSParams,'ChatViewIOS'>>();
     const {colors} = useAppSelector((state)=>state.cart.color.value);
-    const {chatId} = useAppSelector((state)=>state.cart.message.value);
-
-   
 
 
   
 
-   
-    // const {params:{getSocket}} = useRoute<RouteProp<AndroidStackParams,'Chat'>>();
-
-
-  //  console.log("socket",getSocket ? getSocket():null);
 
   return (
     <SafeAreaView style={{backgroundColor:colors.primary,flex:1,paddingTop: Platform.OS === 'android' ? '4%' : 0}}>

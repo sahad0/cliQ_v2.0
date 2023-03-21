@@ -40,9 +40,12 @@ const messageSlice = createSlice({
         txtMsgController:(state, action:PayloadAction<string>)=>{
             state.value.textMsg = action.payload;
         },
+        txtClearController:(state)=>{
+            state.value.textMsg = '';
+        }
     }
 })
 
-export const {  messageController , newMessageController , chatIdController , txtMsgController} = messageSlice.actions;
+export const {  messageController , newMessageController , chatIdController , txtMsgController , txtClearController} = messageSlice.actions;
 
 export default messageSlice.reducer;
