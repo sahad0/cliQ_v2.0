@@ -11,6 +11,7 @@ import { ExistingUserStackParams } from '../../../../router/AndroidNavigators/Ex
 import axios from 'axios';
 import requestStatus, { initial_state } from '../../../../utils/LoaderHandling';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { userOrgController } from '../../../../store/store';
 
 interface OrganisationType {
     id: string,
@@ -110,6 +111,7 @@ type RenderProp = {
       try {
         setEventReducer({type:'loading'});
         const data = (await axios.post('/organization/set-default',{organization_id:_id})).data;
+        dispatch(userOrgController({orgId:_id}));
         navigation.navigate('Drawer');
       } catch (error) {
         setEventReducer({type:'error'});

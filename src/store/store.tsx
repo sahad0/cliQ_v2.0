@@ -89,10 +89,14 @@ const storeSlice = createSlice({
                     state.value.profile.status = status;
                 }
 
+        },
+        userOrgController :(state,action:PayloadAction<OrgId>) =>{
+            const {orgId} = action.payload;
+            state.value.orgId = orgId;
         }
     }
 })
 
-export const { loginController ,logoutController ,userTypeController ,statusController } = storeSlice.actions;
+export const { loginController ,logoutController ,userTypeController ,statusController ,userOrgController } = storeSlice.actions;
 
 export default storeSlice.reducer;
