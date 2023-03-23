@@ -1,5 +1,5 @@
 import { View, Text, Image, Pressable, TouchableOpacity, StyleSheet, StatusBar } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { Switch } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import OctIcon from 'react-native-vector-icons/Octicons';
@@ -13,6 +13,10 @@ import {horizontalScale,moderateScale,verticalScale} from '../utils/Metrics';
 import { AndroidColors } from '../utils/Colors';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { height, width } from '../utils/Dimension';
+import { ExistingUserStackParams } from '../router/AndroidNavigators/ExistingUserNavAndroid';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import axios from 'axios';
+import requestStatus, { initial_state } from '../utils/LoaderHandling';
 
 type Switch=boolean;
 
@@ -24,6 +28,23 @@ export default function DrawerContent() {
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
     const {profile} = useAppSelector((state)=>state.cart.auth.value)
     const dispatch = useAppDispatch();
+    const navigation = useNavigation<NativeStackNavigationProp<ExistingUserStackParams,'Drawer'>>();
+    const [eventReducer,setEventReducer] = useReducer(requestStatus,initial_state);
+
+    const getAllOrg = async()=>{
+        try {
+            navigation.dispatch(DrawerActions.closeDrawer())
+            setEventReducer({type:'loading'});
+            const value = (await axios.get('/organization/user-organizations',{timeout:3000})).data;
+            navigation.navigate('Organization',value);
+            setEventReducer({type:'success'});
+        } catch (error) {
+            setEventReducer({type:'error'});
+            
+        }
+  
+    }
+
    
 
   return (
@@ -70,33 +91,33 @@ export default function DrawerContent() {
                     </View>
 
                     <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                        <View style={{width:'7%',alignSelf:'center',justifyContent:'center'}}>
+                        <View style={{width:'8%',alignSelf:'center',justifyContent:'center'}}>
                             <FontAws name='circle' size={height*0.016} style={{alignSelf:'center'}} color={'green'} />
                         </View>
                         <Text style={[styles.barText]}>Available</Text>
                     </View>
 
-                    <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                        <View style={{width:'7%',}}>
+                    <TouchableOpacity onPress={getAllOrg} style={[styles.barStyle,{marginLeft:'8%'}]}>
+                        <View style={{width:'8%',}}>
                             <Ionicons style={{alignSelf:'center'}} name='at' size={height*0.025} color={'gray'} />
                         </View>
-                        <Text style={styles.barText}>Mentions</Text>
-                    </View>
+                        <Text style={styles.barText}>Orgs</Text>
+                    </TouchableOpacity>
 
                     <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                        <View style={{width:'7%',}}>
+                        <View style={{width:'8%',}}>
                             <Ionicons style={{alignSelf:'center'}} name='checkmark-done' size={height*0.025} color={'gray'} />
                         </View>
                         <Text style={styles.barText}>Reminders</Text>
                     </View>
                     <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                        <View style={{width:'7%',}}>
+                        <View style={{width:'8%',}}>
                             <Ionicons style={{alignSelf:'center'}} name='star-outline' size={height*0.025} color={'gray'} />
                         </View>
                         <Text style={styles.barText}>Starred Messages</Text>
                     </View>
                     <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                        <View style={{width:'7%',}}>
+                        <View style={{width:'8%',}}>
                             <OctIcon name='dependabot'  size={height*0.025} color={'gray'} />
                         </View>
                         <Text style={styles.barText}>Bots</Text>
@@ -106,7 +127,7 @@ export default function DrawerContent() {
                     
 
                     <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                        <View style={{width:'7%',}}>
+                        <View style={{width:'8%',}}>
                         
                         <Ionicons name='qr-code-sharp'style={{alignSelf:'center'}} size={height*0.025} color={'gray'} />
                         </View>
@@ -114,7 +135,7 @@ export default function DrawerContent() {
                     </View>
 
                     <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                    <View style={{width:'7%',}}>
+                    <View style={{width:'8%',}}>
                         
                         <Ionicons name='settings-outline' style={{alignSelf:'center'}} size={height*0.025} color={'gray'} />
                         </View>
@@ -122,7 +143,7 @@ export default function DrawerContent() {
                     </View>
 
                     <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                    <View style={{width:'7%',}}>
+                    <View style={{width:'8%',}}>
                         
                         <Ionicons style={{alignSelf:'center'}} name='notifications-outline' size={height*0.025} color={'gray'} />
                         </View>
@@ -131,7 +152,7 @@ export default function DrawerContent() {
                     <View >
                     <View style={styles.dividerStyle} />
                         <View style={[styles.barStyle,{marginLeft:'8%'}]}>
-                            <View style={{width:'7%',}}>
+                            <View style={{width:'8%',}}>
                             
                             <Fontisto name='night-clear' style={{alignSelf:'center'}} size={height*0.025} color={'gray'} />
                             </View>

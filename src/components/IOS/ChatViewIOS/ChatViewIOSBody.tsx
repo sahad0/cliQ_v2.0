@@ -1,4 +1,4 @@
-import { View, Text, KeyboardAvoidingView,ListRenderItem, ImageSourcePropType, Image, TextInput, Platform, StyleSheet, TouchableOpacity, Keyboard } from 'react-native'
+import { View, Text, KeyboardAvoidingView, FlatList, ListRenderItem, ImageSourcePropType, Image, TextInput, Platform, StyleSheet, TouchableOpacity, Keyboard } from 'react-native'
 import React, { FC, ReactNode, memo, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
 import moment from 'moment';
@@ -300,7 +300,7 @@ const RenderItem:FC<Render> = memo(({item}):JSX.Element=>{
                 </View>
 
                 :
-                <GestureDetector   gesture={gesture}>
+                <GestureDetector  gesture={gesture}>
                 <Animated.View style={[styles.parent,animatedStyle]}>
                     <Image source={item.sender.img_url} style={styles.imgStyle} />
                     <View style={styles.itemGap}>
@@ -367,7 +367,7 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,}):JSX.Element => {
 
     return (
         <View style={{flex:1,}}>
-            <Animated.FlatList    data={data} inverted={true} renderItem={renderItem} keyExtractor={keyExtractor}  />
+            <FlatList data={data} inverted={true} renderItem={renderItem} keyExtractor={keyExtractor}  />
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
             <View style={{backgroundColor:colors.zLgray,height:height*0.055,width:width*0.96,alignSelf:'center',borderRadius:height*0.04,flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:height*0.01}}>

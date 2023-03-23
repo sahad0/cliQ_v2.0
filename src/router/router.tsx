@@ -64,8 +64,8 @@ export default function Router():JSX.Element {
         auth && !newUser &&(
           <Component />
         )
-      } 
-      
+       
+       }
 
     
 

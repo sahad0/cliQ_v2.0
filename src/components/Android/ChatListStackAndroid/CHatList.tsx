@@ -7,7 +7,7 @@ const CHatList = () => {
     const navigation = useNavigation()
 
     useEffect(() => {
-        navigation.dispatch(DrawerActions.openDrawer())
+        navigation.dispatch(DrawerActions.closeDrawer())
     },[])
   return (
     <View>

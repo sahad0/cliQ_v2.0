@@ -18,85 +18,14 @@ interface OrganisationType {
 
 const OrganisationBody:FC<AppProps> = ({height,width}) => {
 
-    const [orgState,setOrgState] = useState<Array<OrganisationType>>([]);
-    
 
-
-    useEffect(()=>{
-        fetchOrg();
-    },[]);
-
-    const fetchOrg = async ():Promise<void> => {
-        try {
-            const {data} = await axios.get('/organization/user-organizations');
-            
-            if(data){
-                // setOrgState(data.organizations);
-                const x = [
-                    {
-                        id: '231',
-                        name: 'Sahad',
-                        isDefault:true,
-                        owner:{}
-                    },
-                    {
-                        id: 'erkwr',
-                        name: 'Fif_Org',
-                        isDefault:true,
-                        owner:{}
-                    },
-                    {
-                        id: '23rwerw1',
-                        name: 'Xpress',
-                        isDefault:true,
-                        owner:{}
-                    },
-                    {
-                        id: '2wrewrw31',
-                        name: 'Truckate',
-                        isDefault:true,
-                        owner:{}
-                    },
-                    {
-                        id: '23dsada1',
-                        name: 'Sahad',
-                        isDefault:true,
-                        owner:{}
-                    },
-                    {
-                        id: 'erkwadsar',
-                        name: 'Fif_Org',
-                        isDefault:true,
-                        owner:{}
-                    },
-                    {
-                        id: '23rwersdsw1',
-                        name: 'Xpress',
-                        isDefault:true,
-                        owner:{}
-                    },
-                    {
-                        id: '2wresdsdwrw31',
-                        name: 'Truckate',
-                        isDefault:true,
-                        owner:{}
-                    }
-                ]
-
-                setOrgState(x);
-               
-
-            }
-        } catch (err:any) {
-        }
-    }
 
   
 
 
   return (
     <>
-       <OrgFlatlist height={height} width={width} orgState={orgState}   />  
+       <OrgFlatlist height={height} width={width}    />  
     </>
   )
 }

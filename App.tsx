@@ -50,12 +50,11 @@ export type AppDispatch = typeof store.dispatch;
 
 
 
-axios.defaults.baseURL = 'http://192.168.0.113:6969/api';
+axios.defaults.baseURL = 'https://prezz.live/api';
 
 
 
 function App(): JSX.Element {
-
 
 
   return (
