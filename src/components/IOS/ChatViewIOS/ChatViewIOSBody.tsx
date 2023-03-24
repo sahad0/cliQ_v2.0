@@ -1,5 +1,5 @@
 import { View, Text, KeyboardAvoidingView, ListRenderItem, ImageSourcePropType, Image, TextInput, Platform, StyleSheet, TouchableOpacity, Keyboard } from 'react-native'
-import React, { FC, MutableRefObject, ReactNode, forwardRef, memo, useEffect, useRef } from 'react'
+import React, { FC, ForwardedRef, MutableRefObject, ReactNode, forwardRef, memo, useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../Hooks/hooks';
 import moment from 'moment';
 import Ion from 'react-native-vector-icons/Ionicons'
@@ -12,6 +12,7 @@ import { txtClearController, txtMsgController } from '../../../store/messageStor
 import { SocketContext } from '../../../context/SocketContext';
 import { Gesture, GestureDetector, GestureHandlerRootView, PanGestureHandler, FlatList } from 'react-native-gesture-handler';
 import  Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+import { data } from '../../../../data';
 
 type AppProps = {
     height:number,
@@ -37,233 +38,35 @@ type RenderType = {
 
 }
 type Render = {
-    item:RenderType,
-    ref:MutableRefObject<null>,
-    ref1:MutableRefObject<null>,
-    
+    item: RenderType;
+    refs: {flatlistRef:React.MutableRefObject<FlatList | null>, inputRef: React.MutableRefObject<TextInput | null>}
 }
 
 
-const data = [
- 
-  
-    {
-        id:'1',
-        sender:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        update_history:[
-            {
-                content: "Lol,great Lets go out for some tonight?",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'2',
-        sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        update_history:[
-            {
-                content: "Yeh bruh",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'3',
-        sender:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        update_history:[
-            {
-                content: "You love Pizza?",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'4',
-        sender:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        update_history:[
-            {
-                content: "You love Pizza?",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'5',
-        sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        update_history:[
-            {
-                content: "Yeh bruh",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'6',
-        sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        update_history:[
-            {
-                content: "Yeh bruh",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'7',
-        sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        update_history:[
-            {
-                content: "Yeh bruh",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'8',
-        sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        update_history:[
-            {
-                content: "Yeh bruh",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'9',
-        sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        update_history:[
-            {
-                content: "Yeh bruh",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-    {
-        id:'10',
-        sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
-            name:'Michel',
-            img_url:require('../../../assets/images/profPics/6.png'),
-        },
-        is_private:true,
-        reciever:{
-            id:'1',
-            name:'Ren',
-            img_url:require('../../../assets/images/profPics/5.png'),
-        },
-        update_history:[
-            {
-                content: "Yeh bruh",
-                updated_at:'2023-01-17T10:19:06.031Z',
-            }
-        ]
-    },
-];
 
-const RenderItem:FC<Render> = memo(forwardRef(({item},ref):JSX.Element=>{
+
+const RenderItem = memo(({item,refs}:Render):JSX.Element=>{
     const {profile} = useAppSelector((state)=>state.cart.auth.value);
     const itemLength = item.update_history[0].content.length<20;
     const value = useSharedValue(0);
-    const value1 = useSharedValue(0);
+
+    const openKeyboard = ()=>{
+        refs.inputRef.current?.focus();
+    }
+
+
 
     const gestureEvent = useAnimatedGestureHandler({
         onActive:(e)=>{
             if(e.translationX>0 && e.translationX<width*0.3){
                 value.value = e.translationX;
+                runOnJS(openKeyboard)();
                 
             }
         },
         onEnd:()=>{
-            value.value = withTiming(0,{duration:300}) ;
+            value.value = withSpring(0) ;
+
 
         }
     })
@@ -315,7 +118,7 @@ const RenderItem:FC<Render> = memo(forwardRef(({item},ref):JSX.Element=>{
                 </View>
 
                 :
-                <PanGestureHandler  failOffsetY={[-5, 5]} activeOffsetX={[-5, 5]} simultaneousHandlers={ref} onGestureEvent={gestureEvent}>
+                <PanGestureHandler  failOffsetY={[-5, 5]} activeOffsetX={[-5, 5]} simultaneousHandlers={refs.flatlistRef} onGestureEvent={gestureEvent}>
                 <Animated.View style={[styles.parent,animatedStyle]}>
                     <Image source={item.sender.img_url} style={styles.imgStyle} />
                     <View style={styles.itemGap}>
@@ -338,7 +141,7 @@ const RenderItem:FC<Render> = memo(forwardRef(({item},ref):JSX.Element=>{
             }
         </>
     )
-}));
+});
 
 
 
@@ -346,8 +149,8 @@ const RenderItem:FC<Render> = memo(forwardRef(({item},ref):JSX.Element=>{
 
 const ChatViewIOSBody:FC<AppProps> = ({height,width,}):JSX.Element => {
 
-    const flatlistRef = useRef(null);
-    const inputRef = useRef(null);
+    const flatlistRef = useRef<FlatList | null>(null);
+    const inputRef = useRef<TextInput | null>(null);
     const {colors} = useAppSelector((state)=>state.cart.color.value);
     const {profile,orgId} = useAppSelector((state)=>state.cart.auth.value);
     const {message,chatId,textMsg} = useAppSelector((state)=>state.cart.message.value);
@@ -356,11 +159,25 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,}):JSX.Element => {
 
 
 
-    const renderItem:ListRenderItem<RenderType> = ({item})=> <RenderItem item={item} ref={flatlistRef} ref1={inputRef} />
+    const renderItem:ListRenderItem<RenderType> = ({item})=> <RenderItem item={item} refs={{flatlistRef:flatlistRef,inputRef:inputRef}}  />
     const keyExtractor = (item:RenderType):string => item.id;
    
-
-
+    useEffect(()=>{
+        const keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            handleKeyboardDidHide
+          );
+      
+          return () => {
+            keyboardDidHideListener.remove();
+          };
+    },[]);
+  
+    const handleKeyboardDidHide = () => {
+      if (inputRef.current) {
+        inputRef.current.blur();
+      }
+    };
 
 
     const sendText = ()=>{
