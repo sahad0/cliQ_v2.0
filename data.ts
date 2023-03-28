@@ -10,7 +10,7 @@ export const data = [
         },
         is_private:true,
         reciever:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -24,7 +24,7 @@ export const data = [
     {
         id:'2',
         sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -36,7 +36,7 @@ export const data = [
         },
         update_history:[
             {
-                content: "Yeh bruh",
+                content: "wow",
                 updated_at:'2023-01-17T10:19:06.031Z',
             }
         ]
@@ -50,7 +50,7 @@ export const data = [
         },
         is_private:true,
         reciever:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -70,13 +70,13 @@ export const data = [
         },
         is_private:true,
         reciever:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
         update_history:[
             {
-                content: "You love Pizza?",
+                content: "Lets go",
                 updated_at:'2023-01-17T10:19:06.031Z',
             }
         ]
@@ -84,7 +84,7 @@ export const data = [
     {
         id:'5',
         sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -96,7 +96,7 @@ export const data = [
         },
         update_history:[
             {
-                content: "Yeh bruh",
+                content: "teh teh",
                 updated_at:'2023-01-17T10:19:06.031Z',
             }
         ]
@@ -104,7 +104,7 @@ export const data = [
     {
         id:'6',
         sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -116,7 +116,7 @@ export const data = [
         },
         update_history:[
             {
-                content: "Yeh bruh",
+                content: "Oiiiiiii",
                 updated_at:'2023-01-17T10:19:06.031Z',
             }
         ]
@@ -124,7 +124,7 @@ export const data = [
     {
         id:'7',
         sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -136,7 +136,7 @@ export const data = [
         },
         update_history:[
             {
-                content: "Yeh bruh",
+                content: "Yhi hi",
                 updated_at:'2023-01-17T10:19:06.031Z',
             }
         ]
@@ -144,7 +144,7 @@ export const data = [
     {
         id:'8',
         sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -164,7 +164,7 @@ export const data = [
     {
         id:'9',
         sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },
@@ -184,7 +184,7 @@ export const data = [
     {
         id:'10',
         sender:{
-            id:'680e7fc4-d135-4f35-83e0-8ef578926fe4',
+            id:'6fcc8edd-b664-4a76-bf15-6dc2c9e984a1',
             name:'Michel',
             img_url:require('./src/assets/images/profPics/6.png'),
         },

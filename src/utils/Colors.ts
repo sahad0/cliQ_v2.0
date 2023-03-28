@@ -11,10 +11,10 @@ export const AndroidColors: Colors= {
         secondaryText:'#f0483e',
         zLgray:'#212121',
         zGray:'#6b6b6b',
-        zBlue:'#4990e2',
+        zBlue:'#1c6ba3',
         zBlack:'#ffffff',
         zRed:'rgb(255,69,58)',
-
+        placeholderColor:'lightgray'
         
     }
     

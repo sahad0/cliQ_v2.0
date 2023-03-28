@@ -91,7 +91,7 @@ const PersonalChannelList:FC<AppProps> = ({height,width}):JSX.Element => {
 
 const styles = StyleSheet.create({
     hashStyle: {color:IosColors.colors.zGray,fontSize:height*0.023,marginLeft:height*0.01},
-    textStyle: {color: Platform.OS==='ios' ?IosColors.colors.secondary :AndroidColors.colors.secondary ,fontSize:Platform.OS==='ios'? height*0.020 : height*0.018,marginLeft:height*0.02,fontWeight:'500'}
+    textStyle: {color: Platform.OS==='ios' ?IosColors.colors.secondary :AndroidColors.colors.secondary ,fontSize:Platform.OS==='ios'? height*0.020 : height*0.018,marginLeft:height*0.02,fontWeight:'400'}
 })
 
 

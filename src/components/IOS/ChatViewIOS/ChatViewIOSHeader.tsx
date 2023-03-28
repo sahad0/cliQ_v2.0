@@ -16,7 +16,6 @@ type AppProps = {
 const ChatViewIOSHeader:FC<AppProps> = ({height,width,name}):JSX.Element => {
     const {colors} = useAppSelector((state)=>state.cart.color.value);
     const navigation = useNavigation<StackNavigationProp<AppStackIOSParams,'ChatViewIOS'>>();
-
   return (
     <View style={{height:height*0.06,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.7,shadowRadius: 2,borderBottomColor:'lightgray',borderBottomWidth:0.5,backgroundColor:colors.primary}}>
         <View style={{flexDirection:'row',alignItems:'center',margin:height*0.02,marginTop:0}}>
