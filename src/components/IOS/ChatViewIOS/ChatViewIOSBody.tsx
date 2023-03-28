@@ -14,12 +14,12 @@ import { Gesture, GestureDetector, GestureHandlerRootView, PanGestureHandler, Fl
 import  Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { data } from '../../../../data';
 import RenderItem from './RenderItem';
-import { PropRef } from './TextFile';
+import { PropRef } from '../../../pages/IOS/ChatListStackIOS/ChatViewIOS';
 
 type AppProps = {
     height:number,
     width:number,
-    replyRef:PropRef
+    replyRef:MutableRefObject<PropRef>
 }
 export type RenderType = {
     id:string,
@@ -39,11 +39,6 @@ export type RenderType = {
         updated_at: string
     }[]; 
 
-}
-type Render = {
-    item: RenderType;
-    refs: {flatlistRef:React.MutableRefObject<FlatList | null>, inputRef: React.MutableRefObject<TextInput | null>},
-    setReply:Dispatch<SetStateAction<null|RenderType>>,
 }
 
 
@@ -66,9 +61,6 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,replyRef}):JSX.Element => {
     const [myMessage,setMyMessage] = useState<string>();
     const dispatch = useAppDispatch();
     
-    useEffect(()=>{
-        console.log("");
-    },[replyRef])
     
 
 

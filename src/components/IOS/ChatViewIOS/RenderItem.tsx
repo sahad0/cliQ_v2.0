@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, TextInput, Platform } from 'react-native'
-import React, { Dispatch, SetStateAction, memo, useCallback } from 'react'
+import React, { Dispatch, MutableRefObject, SetStateAction, memo, useCallback } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { height, width } from '../../../utils/Dimension';
@@ -8,12 +8,12 @@ import moment from 'moment';
 import { AndroidColors, IosColors } from '../../../utils/Colors';
 import Ion from 'react-native-vector-icons/Ionicons'
 import { RenderType } from './ChatViewIOSBody';
-import { PropRef } from './TextFile';
+import { PropRef } from '../../../pages/IOS/ChatListStackIOS/ChatViewIOS';
 
 
 export type Render = {
     item: RenderType;
-    refs: {flatlistRef:React.MutableRefObject<FlatList | null>, inputRef: React.MutableRefObject<TextInput | null>,replyRef:PropRef},
+    refs: {flatlistRef:React.MutableRefObject<FlatList | null>, inputRef: React.MutableRefObject<TextInput | null>,replyRef:MutableRefObject<PropRef | null>},
 
 }
 
@@ -72,7 +72,6 @@ function RenderItem ({item,refs,}:Render):JSX.Element{
 
  
 
-    console.log('WOw');
 
         return(
         <>
