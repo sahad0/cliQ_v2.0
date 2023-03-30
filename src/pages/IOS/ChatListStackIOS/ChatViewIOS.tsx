@@ -10,17 +10,18 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AndroidStackParams } from '../../../router/AndroidNavigators/AndroidStackNav';
 import { SocketContext } from '../../../context/SocketContext';
 import TextFile from '../../../components/IOS/ChatViewIOS/TextFile';
+import { ChatNativeStackParams } from '../../../router/AndroidNavigators/ChatNativeStack';
 
 export type PropRef =  {setReplyFn:(item:RenderType)=>void,}|null;
 
 
 const ChatViewIOS = ():JSX.Element => {
 
-    const {params:{data:{id,name}}} = useRoute<RouteProp<AppStackIOSParams,'ChatViewIOS'>>();
+    const {params:{data:{id,name}}} = useRoute<RouteProp<ChatNativeStackParams,'ChatView'>>();
     const {colors} = useAppSelector((state)=>state.cart.color.value);
     const replyRef = useRef<PropRef | null>(null);
+  const params = useRoute()
   
-
 
 
 

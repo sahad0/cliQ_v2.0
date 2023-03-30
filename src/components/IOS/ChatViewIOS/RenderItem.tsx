@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Image, TextInput, Platform } from 'react-native'
-import React, { Dispatch, MutableRefObject, SetStateAction, memo, useCallback } from 'react'
+import React, { Dispatch, MutableRefObject, SetStateAction, memo, useCallback, useMemo } from 'react'
 import { useAppSelector } from '../../../Hooks/hooks';
 import Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { height, width } from '../../../utils/Dimension';
-import { FlatList, PanGestureHandler } from 'react-native-gesture-handler';
+import { FlatList, Gesture, GestureDetector, PanGestureHandler } from 'react-native-gesture-handler';
 import moment from 'moment';
 import { AndroidColors, IosColors } from '../../../utils/Colors';
 import Ion from 'react-native-vector-icons/Ionicons'
@@ -18,40 +18,51 @@ export type Render = {
 }
 
 
-function RenderItem ({item,refs,}:Render):JSX.Element{
+function RenderItem ({item,refs}:Render):JSX.Element{
     const {profile} = useAppSelector((state)=>state.cart.auth.value);
     const itemLength = item.update_history[0].content.length<20;
    
     const value = useSharedValue<number>(0);
 
-    // const openKeyboard = ()=>{
-    //    refs.inputRef.current?.focus();
-    // }
+   const replyHandling = (item:RenderType)=>{
+    refs.replyRef.current?.setReplyFn(item);
+   }
+
+    // const gestureEvent = useAnimatedGestureHandler({
+    //     onActive:(e)=>{
+    //         if(e.translationX>0 && e.translationX<width*0.3){
+    //             value.value = e.translationX;
+    //         }
+    //     },
+    //     onEnd:()=>{
+    //         value.value = withSpring(0) ;
+    //         if(value.value>width*0.2){
+    //                 runOnJS(replyHandling)(item);
+    //         }
 
 
 
-    const gestureEvent = useAnimatedGestureHandler({
-        onActive:(e)=>{
-            if(e.translationX>0 && e.translationX<width*0.3){
-                value.value = e.translationX;
-            }
-        },
-        onEnd:()=>{
-            value.value = withSpring(0) ;
-            if(value.value>width*0.25){
-            // runOnJS(openKeyboard)();
-            }
+    //     }
+    // })
 
+    const gesture = useMemo(() => {
+        return Gesture.Pan().onUpdate((e)=>{
+          if(e.translationX>0 && e.translationX<width*0.3){
+            value.value = e.translationX;
+          }
+        }).onEnd((e)=>{
+          value.value = withSpring(0) ;
+          if(value.value>width*0.2){
+            runOnJS(replyHandling)(item);
+          }
+        }).failOffsetY([-5, 5]).activeOffsetX([-5, 5]);
+      }, [item, value, width]);
 
-
-        }
-    })
-
+  
     const animatedStyle = useAnimatedStyle(() => 
     ({
         transform: [{ translateX: value.value }],
-    }));
-
+    }),[value]);
 
 
 
@@ -69,6 +80,8 @@ function RenderItem ({item,refs,}:Render):JSX.Element{
             flexDirection:itemLength?'row':'column',
         }
     })
+
+    console.log("RenderItem");
 
  
 
@@ -96,7 +109,8 @@ function RenderItem ({item,refs,}:Render):JSX.Element{
                 </View>
 
                 :
-                <PanGestureHandler  onEnded={()=> refs.replyRef.current?.setReplyFn(item)}  failOffsetY={[-5, 5]} activeOffsetX={[-5, 5]} simultaneousHandlers={refs.flatlistRef} onGestureEvent={gestureEvent}>
+                <GestureDetector gesture={gesture} >
+          
                 <Animated.View style={[styles.parent,animatedStyle,styles.widthStyle]}>
                     <Image source={item.sender.img_url} style={styles.imgStyle} />
                     <View style={styles.itemGap}>
@@ -113,9 +127,8 @@ function RenderItem ({item,refs,}:Render):JSX.Element{
                             </View>
                         </View>
                     </View>
-
                 </Animated.View>
-                </PanGestureHandler>
+                </GestureDetector>
             }
         </>
     )

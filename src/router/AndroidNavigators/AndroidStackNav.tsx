@@ -11,7 +11,7 @@ import { Socket, io } from 'socket.io-client';
 import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import { messageController } from '../../store/messageStore';
 import { SocketProvider } from '../../context/SocketContext';
-
+import ChatNativeStack, { ChatNativeStackParams } from './ChatNativeStack';
 
 // type SocketType = {
 //   getSocket?:()=>object | undefined
@@ -25,9 +25,7 @@ export  type AndroidStackParams = {
   Pins:{
     data : {id:string,imgUrl:ImageSourcePropType,name:string}[]
   },
-  Chat:Partial<{data:{id:string,name:string,}}> ,
-
-
+  Chat:{data:{id:string,name:string,}},
   
 }
 
@@ -60,7 +58,7 @@ const AndroidStackNav = () => {
           <Stack.Screen  options={{animation:'slide_from_right'}} name='ChannelForm' component={ChannelFormAndroid} />
           <Stack.Screen  options={{animation:'slide_from_right'}} name='AddParticipants' component={AddParticipants} />
           <Stack.Screen  options={{animation:'slide_from_right'}} name='Pins' component={PinsIOS} />
-          <Stack.Screen  options={{animation:'slide_from_right'}} name='Chat' component={ChatViewIOS} />
+          <Stack.Screen  options={{animation:'slide_from_right'}} name='Chat' component={ChatNativeStack} />
 
 
 

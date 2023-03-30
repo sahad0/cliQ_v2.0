@@ -11,10 +11,11 @@ import { Pressable } from 'react-native';
 import { txtClearController, txtMsgController } from '../../../store/messageStore';
 import { SocketContext } from '../../../context/SocketContext';
 import { Gesture, GestureDetector, GestureHandlerRootView, PanGestureHandler, FlatList, GestureEventPayload, GestureEvent, PanGestureHandlerEventPayload, PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
-import  Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+import  Animated, { runOnJS, set, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { data } from '../../../../data';
 import RenderItem from './RenderItem';
 import { PropRef } from '../../../pages/IOS/ChatListStackIOS/ChatViewIOS';
+import { ActivityIndicator } from 'react-native';
 
 type AppProps = {
     height:number,
@@ -66,17 +67,27 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,replyRef}):JSX.Element => {
 
     const renderItem:ListRenderItem<RenderType> = ({item})=> <RenderItem item={item} refs={{flatlistRef:flatlistRef,inputRef:inputRef,replyRef:replyRef}}  />
     const keyExtractor = (item:RenderType):string => item.id;
-   
+    const [data1,setData] = useState<RenderType[]>();
+
     useEffect(()=>{
-        const keyboardDidHideListener = Keyboard.addListener(
-            'keyboardDidHide',
-            handleKeyboardDidHide
-          );
+        const x = setTimeout(()=>{
+            setData(data);
+
+        },500);
+
+        return ()=> clearInterval(x);
+    },[])
+   
+    // useEffect(()=>{
+    //     const keyboardDidHideListener = Keyboard.addListener(
+    //         'keyboardDidHide',
+    //         handleKeyboardDidHide
+    //       );
       
-          return () => {
-            keyboardDidHideListener.remove();
-          };
-    },[]);
+    //       return () => {
+    //         keyboardDidHideListener.remove();
+    //       };
+    // },[]);
   
     const handleKeyboardDidHide = () => {
       if (inputRef.current) {
@@ -105,9 +116,9 @@ const ChatViewIOSBody:FC<AppProps> = ({height,width,replyRef}):JSX.Element => {
 
 
     return (
-        <GestureHandlerRootView style={{flex:1,}}>
-            <FlatList ref={flatlistRef} data={data} inverted={true} renderItem={renderItem} keyExtractor={keyExtractor} style={{width:width}} />
-        </GestureHandlerRootView>
+        <View style={{flex:1,}}>
+            <FlatList scrollEventThrottle={16}  ListEmptyComponent={()=>(<ActivityIndicator size={'large'}   />)} ref={flatlistRef} data={data1} inverted={true} renderItem={renderItem} keyExtractor={keyExtractor} style={{width:width}} />
+        </View>
     )
 }
 

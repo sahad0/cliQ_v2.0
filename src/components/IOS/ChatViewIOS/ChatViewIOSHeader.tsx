@@ -10,7 +10,7 @@ import { AppStackIOSParams } from '../../../router/IOSNavigators/AppStackIOS';
 type AppProps = {
     height:number,
     width:number,
-    name:string,
+    name?:string,
 }
 
 const ChatViewIOSHeader:FC<AppProps> = ({height,width,name}):JSX.Element => {
